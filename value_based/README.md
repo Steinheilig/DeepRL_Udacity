@@ -1,26 +1,43 @@
 # First Assignment: Value-Based methods
 
 ## Project Details
-The README describes the the project environment details (i.e., the state and action spaces, and when the environment is considered solved).
+Goal of the project is to collect yellow (reward = +1) and avoid blue bananas (reward = -1) in an UnityML environment. <br>
+The simulation contains a single agent that navigates a large environment.<br>
+At each time step, it can take a action out of:
+- `0` - walk forward 
+- `1` - walk backward
+- `2` - turn left
+- `3` - turn right
+The state space has `37` dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction. 
+The values of the state space are in the range [0..1] for all expcept the last two.
 
 ## Getting Started
-The README has instructions for installing dependencies or downloading needed files.
+Check out the [Udacity Git](https://github.com/udacity/Value-based-methods) for installing dependencies or downloading needed files.
+**Note**: While installing the dependencies after cloning the git reprository
+
+    git clone https://github.com/udacity/Value-based-methods.git
+    cd Value-based-methods/python
+    pip install .
+
+You might encounter the problem that PyTorch version 0.4.0 is not available. Edit the file requirements.txt and just install the most recent version (which worked fine for me). 
 
 ## Instructions
-The README describes how to run the code in the repository, to train the agent. For additional resources on creating READMEs or using Markdown, see here and here.
+To run the code in the repository start with either of the different training codes provided. It will import model_MLP.py (neural network definition to approximate the action-value function Q(S,A)) and dqn_agent.py (the Deep-Q Network implementation code).
 
 ## Training Code 
-Functional, well-documented, and organized code for training the agent is provided:
-- 1
-- 2
+Functional, well-documented, and organized code for training the agent is provided for different implementations via Jupiter notebooks:
+1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner.ipynb](Speedrunner.ipynb)
+2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb)
+3. Normal <br> [Normal.ipynb](Normal.ipynb)
 
 ## Framework
 The code is written in PyTorch and Python 3.
 
 ## Saved Model Weights
 The submission includes the saved model weights of the successful agents:
-- 1
-- 2
+1. Speedrunner (reduced action space: Only forward, backward & left) <br> [checkpoint_Speedrunner1_DONE.pth](checkpoint_Speedrunner1_DONE.pth)
+2. Speedrunner2 (reduced action space: Only forward & left) <br> [checkpoint_Speedrunner2_DONE.pth](checkpoint_Speedrunner2_DONE.pth)
+3. Normal <br> [checkpoint_Normal.pth](checkpoint_Normal.pth)
 
 ## Report
 The [report](Report.md) providing a description of the implementation, more specifically the learning algorithm, along with the chosen hyperparameters and the model architectures 
