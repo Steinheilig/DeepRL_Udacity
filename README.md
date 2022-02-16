@@ -3,7 +3,7 @@
 [Udacity DeepRL Course](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893)
 
 ## First Assignment: Value Based methods
-The [directory](https://github.com/Steinheilig/DeepRL_Udacity/value_based/) contains material and my assignment solutions related to Udacity's Value-based Methods course: https://github.com/udacity/Value-based-methods
+The [directory](./value_based/) contains material and my assignment solutions related to Udacity's Value-based Methods course: https://github.com/udacity/Value-based-methods
 
 ## Second Assignment: 
 
