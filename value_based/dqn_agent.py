@@ -127,7 +127,7 @@ class Agent():
           Q_expected = self.qnetwork_local(states).gather(1, actions)
         
         self.optimizer.zero_grad()  # clear previous gradients
-        loss = F.mse_loss(Q_expected, Q_targets) ## nice, "stolen" from solution ;) -> this way gradients can be calculated automatically..
+        loss = F.mse_loss(Q_expected, Q_targets) ## nice, use code from solution ;) -> this way gradients can be calculated automatically..
         loss.backward() 
         self.optimizer.step()
         
