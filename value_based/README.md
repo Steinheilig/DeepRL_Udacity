@@ -30,7 +30,7 @@ To run the code in the repository start with either of the different training co
 
 ## Training Code 
 Functional, well-documented, and organized code for training the agent is provided for different implementations via Jupiter notebooks:
-1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner.ipynb](Speedrunner.ipynb)
+1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner.ipynb)
 2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb)
 3. Normal <br> [Normal.ipynb](Normal.ipynb)
 
