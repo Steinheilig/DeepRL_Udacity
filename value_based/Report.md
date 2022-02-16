@@ -42,4 +42,4 @@ To further improving the agent's performance:
 - optimze Q-network architecture
 - add prioritized replay buffer
 - try dueling Q-networks
-- read Google DeepMind's Rainbow paper and add the other remaining twicks
+- read Google DeepMind's Rainbow paper and add the other remaining tweaks
