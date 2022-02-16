@@ -3,13 +3,17 @@
 ## Project Details
 Goal of the project is to collect yellow (reward = +1) and avoid blue bananas (reward = -1) in an UnityML environment. <br>
 The simulation contains a single agent that navigates a large environment.<br>
+<!-- <img src="./images/Env.jpg width="20%">  -->                                     
+<!--  ![Environment Screen Shot](./images/Env.jpg) -->
+<img src="./images/Env.jpg" width="25%"> 
+
 At each time step, it can take a action out of:
 - `0` - walk forward 
 - `1` - walk backward
 - `2` - turn left
 - `3` - turn right
 The state space has `37` dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction. 
-The values of the state space are in the range [0..1] for all expcept the last two.
+The continous values of the state space are in the range [0..1] for all except the last two.
 
 ## Getting Started
 Check out the [Udacity Git](https://github.com/udacity/Value-based-methods) for installing dependencies or downloading needed files.
