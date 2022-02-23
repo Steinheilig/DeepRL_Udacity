@@ -55,5 +55,5 @@ The submission includes the saved model weights of the successful agents:
 
 ## Report
 The [report](Report.md) providing a description of the implementation, more specifically the learning algorithm, along with the chosen hyperparameters and the model architectures 
-for the chosen feed forwad neural networks, plot of rewards per episode (average reward (over 100 episodes) >= +13), the number of episodes needed to solve the environment and 
+for the chosen feed forwad neural networks, plot of rewards per episode (average reward (over 100 episodes) >= +30), the number of episodes needed to solve the environment and 
 discrete future ideas for improving the agent's performance.
