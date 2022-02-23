@@ -12,23 +12,27 @@ Every entry in the action vector should be a number between -1 and 1.
 The Unity ML simulation contains either single agent (2 joint robot arm) or multiple simultanious agents.<br>
 <!-- <img src="./images/Env.jpg width="20%">  -->                                     
 <!--  ![Environment Screen Shot](./images/Env.jpg) -->
-<img src="./images/Env.jpg" width="25%"> 
+<img src="./images/Env.jpg" width="45%"> 
 
 
 ## Getting Started
-Check out the [Udacity Git](https://github.com/udacity/deep-reinforcement-learning/tree/master/p2_continuous-control#getting-started) for installing dependencies or downloading needed files.<br>
-**Note**: While installing the dependencies after cloning the git reprository
+1) Check out the [Udacity Git](https://github.com/udacity/Value-based-methods) for installing dependencies or downloading needed files.<br>
+You will install/add a new Python environment called drlnd to your Python installation. <br>
+    **Note**: While installing the dependencies after cloning the git repository
 
-    git clone https://github.com/udacity/Value-based-methods.git
-    cd Value-based-methods/python
-    pip install .
+        git clone https://github.com/udacity/Value-based-methods.git
+        cd Value-based-methods/python
+        pip install .
 
-You might encounter the problem that PyTorch version 0.4.0 is not available. Edit the file requirements.txt and just install the most recent version (which worked fine for me). 
+    You might encounter the problem that PyTorch version 0.4.0 is not available. Edit the file requirements.txt and just install the most recent version (which worked fine for me). 
 
-It seems to be possible to work with the Unity ML env. in headless mode: https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server
+2) Check out the [Udacity Git](https://github.com/udacity/deep-reinforcement-learning/tree/master/p2_continuous-control#getting-started) for install instruction for the Unity ML environment.<br>
 
 
+It seems to be possible to work with the Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server)
 
+
+**SO FAR ... SETUP**
 
 
 ## Instructions
