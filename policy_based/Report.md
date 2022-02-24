@@ -2,6 +2,11 @@
 The report provides a description of the implementation to solve the 2 joint reaching robot project with DeepRL means.<br>
 <img src="./images/Env.jpg" width="30%"> 
 
+## Baseline Performance
+A complete random agent (action values drawn from standard Normal distribution (mean=0, stdev=1) and clipped to [-1,1]) results in <br>
+<score> 0.140 +/- 0.197 <br>
+The agent performs <done steps> 1001.0 +/- 0.0 before an epoch is terminated. Hence, tmax of continous trajectory is == 1000.
+
 ## Preprocessing
 The state space consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm and (I guess - information not provided by Udacity) some states additionally encode sensing target position.
 Most of the state features are not normalized. In fact, some feature values are in [-20,20] while others are in [-1,1] which can significantly decrease NN training performance. <br>
