@@ -4,11 +4,13 @@ The report provides a description of the implementation to solve the 2 joint rea
 
 ## Preprocessing
 The state space consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm and (I guess - information not provided by Udacity) some states additionally encode sensing target position.
-Most of the state features are not normalized. In fact, some feature values are in [-20,20] while others are in [-1,1] which can significantly decrease NN training performance. 
-The state values are (optional) scaled by deviding with the elements of the scaling matrix:
+Most of the state features are not normalized. In fact, some feature values are in [-20,20] while others are in [-1,1] which can significantly decrease NN training performance. <br>
+The state values are (optional) scaled by dividing with the elements of the scaling matrix:
 [ 5,  5,  5,  1,  1,  1,  1, 11,  3,  4, 14, 10, 14, 10, 11, 10,  1,  1,  1,  1, 12,  9,  8, 18,
  20, 17,  8,  1,  8,  1,  1,  1,  1]
 
+
+**UNTIL HERE:...**
 
 ## Learning Algorithm
 A Deep Q network (DQN) with fixed targets, experience replay buffer and double Q learning is used to solve the assignment. <br>
