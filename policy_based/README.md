@@ -4,8 +4,8 @@
 Goal of the project is to control a double-jointed arm to move to target locations. <br>
 A **reward** of +0.1 is provided for each step that the agent's hand is in the goal location. <br>
 Hence, the goal of your agent is to reach fast towards and maintain its position at the target location for as many time steps as possible. <br>
-The **state space** consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm and I guess (information not provided by Udacity) some states additionally encode sensing target position. <br>
-Not all state features are normalized. <br>
+The **state space** consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm and (I guess - information not provided by Udacity) some states additionally encode sensing target position. <br>
+Most of the state features are not normalized. In fact, some feature values are in [-20,20] while others are in [-1,1] which can significantly decrease NN training performance. <br>
 Each four dimensional continous **action** is a vector with four numbers, corresponding to torque applicable to the two joints of the robot. <br>
 Every entry in the action vector should be a number between -1 and 1.
 
