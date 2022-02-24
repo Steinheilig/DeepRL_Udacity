@@ -16,6 +16,9 @@ The state values are (optional) scaled by dividing with the elements of the scal
 
 
 **UNTIL HERE:...**
+ use this to start: https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal
+ 
+ 
 
 ## Learning Algorithm
 A Deep Q network (DQN) with fixed targets, experience replay buffer and double Q learning is used to solve the assignment. <br>
