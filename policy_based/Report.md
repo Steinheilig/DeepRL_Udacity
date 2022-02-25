@@ -28,10 +28,9 @@ I stopped this approach and searched the [Udacity knowledge base](https://knowle
  
  
 ## Second Attempt - DDPG (multi-agent env.)
-
-**TODO:...**
- use this to start: https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal
- 
+Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at each time step. 
+This is working more smoothly, each epoch the average score keeps increasing. Still the time spend traing the agent is considerable long.
+Hyperparameter and network architecture optimization (or even testing the influence of a subset) is still difficult and hyperparameter and NN architectures are kept constant compared to the first attempt (described in detail below). 
 
 ## Learning Algorithm
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
