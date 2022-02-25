@@ -39,13 +39,9 @@ The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. O
 The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
 The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
-The two networks (well in fact 4 networks: target and local network for each) are implemented in [model_MLP.py](model_MLP.py).<br>
-<br>
-
-**Until HERE:...**
-
- 
-Double Q-learning is added to the code ([dqn_agent.py](dqn_agent.py)) provided during the exercise assignement in the course.<br>
+The two networks (well in fact 4 networks: target and local network for each) are implemented in [XXX.py](model_MLP.py).<br>
+ **Until HERE:...**
+The DDPG code ([dqn_agent.py](dqn_agent.py)) provided during the exercise assignement in the course.<br>
 Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the exercise assignement in the course.<br>
 All learning hyperparameters are unchanged compared to the solution provided during the exercise assignement in the course, i.e. <br>
 - n_episodes (int): maximum number of training episodes = 2000
@@ -60,7 +56,8 @@ All learning hyperparameters are unchanged compared to the solution provided dur
 - learning rate = 5e-4 (Adam optimizer)
 - how often to update the network, ever 4th step
 
-## Different implementations
+**Until HERE:...**
+## Different Implementations
 Three different approaches are tested and compared:
 1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner.ipynb) <br> Motivated by the idea that reducing turning might help to find a suitable Q-approx faster.
 2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb) <br> Motivated by the idea that reducing turning and omiiting backward movement might help to find a suitable Q-approx faster (compare [speed running - computer game](https://www.youtube.com/watch?v=CyhI8Rghaw8).
