@@ -15,9 +15,23 @@ The state values are (optional) scaled by dividing with the elements of the scal
  20, 17,  8,  1,  8,  1,  1,  1,  1]
 
 
+## First Attempt - DDPG (single-agent env.)
+Train in the single agent environment with the DDPG algorithm. This is tidious work since a single agent learns very slow and hyperparameter and network architecture optimization (or even testing the influence of a subset) becomes nearly impossible. 
+After successfully finding an architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal))  that at least lead to some observable learning behavior
+<img src="./images/FirstAttempt_learning.jpg" width="30%"> 
+I stopped this approach and checked the Udacity knowledge base for some support to speed up project progress... <br>
+ 
+> It is true that a single agent's environment may be difficult to train, <br> so you may need several thousand episodes to draw robust conclusions. <br>
+> This is why I am going to recommend the following actions:
+>   - Try the second env (with 20 robotics arms) [..] <br>
+>   - Update every X (e.g., 30) time steps the NNs. <br>
+> https://knowledge.udacity.com/questions/772148
+ 
+ 
+## Second Attempt - DDPG (multi-agent env.)
+
 **UNTIL HERE:...**
  use this to start: https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal
- 
  
 
 ## Learning Algorithm
