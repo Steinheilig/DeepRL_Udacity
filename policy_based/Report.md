@@ -29,21 +29,22 @@ I stopped this approach and searched the [Udacity knowledge base](https://knowle
  
 ## Second Attempt - DDPG (multi-agent env.)
 
-**UNTIL HERE:...**
+**TODO:...**
  use this to start: https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal
  
 
 ## Learning Algorithm
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
-The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. One named actor, learning a function approximation of the optimal deterministic policy \mu(s;\Theata_\mu), i.e. the best action a to take in a given states s: argmax_a Q(s,a).<br>The other neural network is called critic and is used to approximate the action-value function Q for a given state s and the optimal action a determinied by policy \mu(s;\Theata_\mu), i.e. the action value function Q(s,\mu(s;\Theata_\mu));\Theta_Q). \Theta_\mu and \Theta_\Q indicate that the policy dependes on the network weights of the actor and the action-value function dependes on the network weights of the critic, respectively.<br> While the network uses and actor and a critic it is not directly an actor-critic (AC) approach and works more like an approximated DQN. The actor tries to predict the best action in a given state the critic maximizes the Q values of the next state and is not used as a learned baseline (as in traditional AC approaches).
- 
- 
- 
-The Q-value function Q(S,A) is approximated with a multi layer perceptron (MLP), i.e. a fully connected feed forward network with nonlinear activation functions. The MLP consists of 3 hidden layers of size 64-32-10 and ReLU nonlinearity. The inpute space is 37 dimensional and the action space is 4 dimensional (reduced in some of the runs - see below)<br>
+The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. One named **actor**, learning a function approximation of the optimal deterministic policy \mu(s;\Theata_\mu), i.e. the best action a to take in a given states s: argmax_a Q(s,a).<br>The other neural network is called **critic** and is used to approximate the action-value function Q for a given state s and the optimal action a determinied by policy \mu(s;\Theata_\mu), i.e. the action value function Q(s,\mu(s;\Theata_\mu));\Theta_Q). \Theta_\mu and \Theta_\Q indicate that the policy dependes on the network weights of the actor and the action-value function dependes on the network weights of the critic, respectively.<br> While the network uses and actor and a critic it is not directly an actor-critic (AC) approach and works more like an approximated DQN. The actor tries to predict the best action in a given state, the critic maximizes the Q values of the next state and is not used as a learned baseline (as in traditional AC approaches).<br>
+The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
+The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
-The MLP is implemented in [model_MLP.py](model_MLP.py).<br>
-To improve MLP performance, for some implementations (see different implementations below) the state values of the last two features are scaled to be within [-1:1]. All other features seem to be in [0:1] and remain unscaled.<br>
+The two networks (well in fact 4 networks: target and local network for each) are implemented in [model_MLP.py](model_MLP.py).<br>
+<br>
 
+**Until HERE:...**
+
+ 
 Double Q-learning is added to the code ([dqn_agent.py](dqn_agent.py)) provided during the exercise assignement in the course.<br>
 Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the exercise assignement in the course.<br>
 All learning hyperparameters are unchanged compared to the solution provided during the exercise assignement in the course, i.e. <br>
