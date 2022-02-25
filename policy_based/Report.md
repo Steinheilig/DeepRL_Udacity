@@ -39,22 +39,24 @@ The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. O
 The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
 The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
-The two networks (well in fact 4 networks: target and local network for each) are implemented in [XXX.py](model_MLP.py).<br>
- **Until HERE:...**
-The DDPG code ([dqn_agent.py](dqn_agent.py)) provided during the exercise assignement in the course.<br>
-Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the exercise assignement in the course.<br>
-All learning hyperparameters are unchanged compared to the solution provided during the exercise assignement in the course, i.e. <br>
+The two networks (well in fact 4 networks: target and local network for each) are implemented in [XXX.py](model_MLP.py). They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the LeakyReLU activation functions are replaced by ReLU non-linearities<br> 
+The DDPG code ([XXX.py](dqn_agent.py)) augments the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity. The following adjustments are made:<br>
+- interaction with single or multi-agent Unity-ML environment
+- preprosessing of state values (scaling)
+- augmenting the provided classes to allow hyperparameter and NN architecture changes on the fly, e.g. noise on/off
+- a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ 
+Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the course.<br>
+All learning hyperparameters are compareable or only slightly adjusted (highlighted) compared to the solution provided during the course, i.e. <br>
 - n_episodes (int): maximum number of training episodes = 2000
-- max_t (int): maximum number of timesteps per episode  = 1000
-- eps_start (float): starting value of epsilon, for epsilon-greedy action selection = 1.0
-- eps_end (float): minimum value of epsilon = 0.01
-- eps_decay (float): multiplicative factor (per episode) for decreasing epsilon = 0.995
-- replay buffer size = int(1e5) 
-- minibatch size = 64
-- discount factor, gamma = 0.99
-- for soft update of target parameters, tau = 1e-3
-- learning rate = 5e-4 (Adam optimizer)
-- how often to update the network, ever 4th step
+- max_t (int): maximum number of timesteps per episode  = 1000-1
+- replay buffer size = int(1e6), BUFFER_SIZE
+- minibatch size = **64**, BATCH_SIZE 
+- discount factor, gamma = 0.99, GAMMA
+- for soft update of target parameters, tau = 1e-3, TAU
+- learning rate (actor) = 1e-4 (Adam optimizer), LR_ACTOR
+- learning rate (critic) = **1e-3** (Adam optimizer), LR_CRITIC
+- L2 weight decay (critic) = **0**, WEIGHT_DECAY
+- how often to update the networks, ever **XXth** step, multiple_update_steps
 
 **Until HERE:...**
 ## Different Implementations
