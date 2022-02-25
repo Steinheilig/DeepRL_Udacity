@@ -1,6 +1,6 @@
 # Report
 The report provides a description of the implementation to solve the 2 joint reaching robot project with DeepRL means.<br>
-<img src="./images/Env.jpg" width="30%"> 
+<img src="./images/Env.jpg" width="40%"> 
 
 ## Baseline Performance
 A complete random agent (action values drawn from standard Normal distribution (mean=0, stdev=1) and clipped to [-1,1]) results in <br>
@@ -46,7 +46,9 @@ The DDPG code ([XXX.py](dqn_agent.py)) augments the provided [base code](https:/
 - preprosessing of state values (scaling)
 - augmenting the provided classes to allow hyperparameter and NN architecture changes on the fly, e.g. noise on/off
 - a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ 
-
+- gradients of the critic are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), 1)  
+- gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), 1)  
+ 
 Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the course.<br>
 All learning hyperparameters are compareable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
 - n_episodes (int): maximum number of training episodes = 2000
