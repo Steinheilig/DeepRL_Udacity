@@ -16,9 +16,9 @@ The state values are (optional) scaled by dividing with the elements of the scal
 
 ## First Attempt - DDPG (single-agent env.)
 Train in the single agent environment with the DDPG algorithm. This is tidious work since a single agent learns very slow and hyperparameter and network architecture optimization (or even testing the influence of a subset) becomes nearly impossible. 
-After successfully finding an architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal))  that at least lead to some observable learning behaviory<br>
-<img src="./images/FirstAttempt_learning.jpg" width="80%"> <br>
-I stopped this approach and checked the Udacity knowledge base for some support to speed up project progress... <br>
+After successfully finding an architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal))  that at least lead to some observable learning behavior<br>
+<img src="./images/FirstAttempt_learning.jpg" width="60%"> <br>
+I stopped this approach and searched the [Udacity knowledge base](https://knowledge.udacity.com/) for some support to speed up project progress... <br>
  
 > It is true that a single agent's environment may be difficult to train, <br> so you may need several thousand episodes to draw robust conclusions. <br>
 > This is why I am going to recommend the following actions:
@@ -34,9 +34,13 @@ I stopped this approach and checked the Udacity knowledge base for some support 
  
 
 ## Learning Algorithm
-A Deep Q network (DQN) with fixed targets, experience replay buffer and double Q learning is used to solve the assignment. <br>
+I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
+The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. One named actor, learning a function approximation of the optimal deterministic policy \mu(s;\Theata_\mu), i.e. the best action a to take in a given states s: argmax_a Q(s,a).<br>The other neural network is called critic and is used to approximate the action-value function Q for a given state s and the optimal action a determinied by policy \mu(s;\Theata_\mu), i.e. the action value function Q(s,\mu(s;\Theata_\mu));\Theta_Q). \Theta_\mu and \Theta_\Q indicate that the policy dependes on the network weights of the actor and the action-value function dependes on the network weights of the critic, respectively.<br> While the network uses and actor and a critic it is not directly an actor-critic (AC) approach and works more like an approximated DQN. The actor tries to predict the best action in a given state the critic maximizes the Q values of the next state and is not used as a learned baseline (as in traditional AC approaches).
+ 
+ 
+ 
 The Q-value function Q(S,A) is approximated with a multi layer perceptron (MLP), i.e. a fully connected feed forward network with nonlinear activation functions. The MLP consists of 3 hidden layers of size 64-32-10 and ReLU nonlinearity. The inpute space is 37 dimensional and the action space is 4 dimensional (reduced in some of the runs - see below)<br>
-<img src="./images/MLP_struc.JPG" width="25%"><br>
+<img src="./images/DDPG_struc.JPG" width="60%"><br>
 The MLP is implemented in [model_MLP.py](model_MLP.py).<br>
 To improve MLP performance, for some implementations (see different implementations below) the state values of the last two features are scaled to be within [-1:1]. All other features seem to be in [0:1] and remain unscaled.<br>
 
