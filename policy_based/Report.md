@@ -38,7 +38,7 @@ The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. O
 The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
 The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
-The two networks (well in fact 4 networks: target and local network for each) are implemented in [XXX.py](model_MLP.py). They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the LeakyReLU activation functions are replaced by ReLU non-linearities.<br> 
+The two networks (well in fact 4 networks: target and local network for each) are implemented in [XXX.py](model_MLP.py). They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the [LeakyReLU](https://paperswithcode.com/method/leaky-relu) activation functions are replaced by simple ReLU non-linearities.<br> 
 The DDPG code ([XXX.py](dqn_agent.py)) augments the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
  The following adjustments are made:<br>
 - interaction with single or multi-agent Unity-ML environment
@@ -78,7 +78,7 @@ Functional, well-documented, and organized code for training the agent is provid
 ## Ideas for Future Work
 To further improving the agent's performance: 
 - tune hyperparameters
-- optimze Q-network architecture
+- optimze network architectures
 - add prioritized replay buffer
-- try dueling Q-networks
-- read Google DeepMind's Rainbow paper and add the other remaining tweaks
+- add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
+- try policy gradient method like Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) or an actor-critic (AC) method
