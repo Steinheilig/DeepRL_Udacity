@@ -63,7 +63,7 @@ The DDPG agent code ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multip
 - gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), 1) (only for 2nd approach) 
  
 Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the course.<br>
-All learning hyperparameters are compareable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
+All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
 - n_episodes (int): maximum number of training episodes = 2000
 - max_t (int): maximum number of timesteps per episode  = **1000-1**
 - replay buffer size = int(1e6), BUFFER_SIZE
@@ -78,10 +78,23 @@ All learning hyperparameters are compareable or only slightly adjusted (highligh
 - update how many epochs = 20 , UPDATE_MANY_EPOCHS  (only for 3rd approach)
 
 ## Learning Algorithm - PPO
-I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment.<br>
+I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment. PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br> 
+**ADD PPO explaination** 
  
-**Until HERE:...**
+The Code is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
+The following adjustments are made:<br>
+- interface and adapt to the new environment (state_dim = 33, action_dim = 4, etc..)
+- preprosessing of state values (scaling)
+- changed network design (see above)
+- add initialization of the network weights (uniform in [-1/sqrt(L),1/sqrt(L)] where L is the number of input units, final layer weights in [-3e-3, 3e-3]
+- changed actions to be floats values in clipped_surrogate function: actions = torch.tensor(actions, dtype=torch.float, device=device)   # changed to float
+- revised states_to_prob function (not dealing with pixel arrays anymore)
+- use gradient clipping to prevent gradient explosion: torch.nn.utils.clip_grad_norm(policy.parameters(), 1)  in gradient ascent step
 
+All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
+**ADD HYPERPARAMETERS*
+  
+ 
 ## Different Implementations
 Five different approaches are tested and compared:
 1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
