@@ -52,15 +52,15 @@ The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. O
 The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
 The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
-The two networks (well in fact 4 networks: target and local network for each) are implemented in [XXX.py](model_MLP.py). They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the [LeakyReLU](https://paperswithcode.com/method/leaky-relu) activation functions are replaced by simple ReLU non-linearities.<br> 
-The DDPG code ([XXX.py](dqn_agent.py)) augments the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
+The two networks (well in fact 4 networks: target and local network for each) are implemented in [Single/EveryStep](DDPG_Single_model_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_model_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_model_kthStep.py), respectively. They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the [LeakyReLU](https://paperswithcode.com/method/leaky-relu) activation functions are replaced by simple ReLU non-linearities.<br> 
+The DDPG agent code ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_agent_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_agent_kthStep.py), respectivly) augments the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
  The following adjustments are made:<br>
 - interaction with single or multi-agent Unity-ML environment
 - preprosessing of state values (scaling)
 - augmenting the provided classes to allow hyperparameter and NN architecture changes on the fly, e.g. noise on/off
 - a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ 
-- gradients of the critic are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), 1)  
-- gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), 1)  
+- gradients of the critic are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), 1) 
+- gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), 1) (only for 2nd approach) 
  
 Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the course.<br>
 All learning hyperparameters are compareable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
@@ -73,7 +73,7 @@ All learning hyperparameters are compareable or only slightly adjusted (highligh
 - learning rate (actor) = 1e-4 (Adam optimizer), LR_ACTOR
 - learning rate (critic) = **1e-3** (Adam optimizer), LR_CRITIC
 - L2 weight decay (critic) = **0**, WEIGHT_DECAY
-- how often to update the networks, ever **XXth** step, multiple_update_steps
+- how often to update the networks, ever 30th step, multiple_update_steps (only for 3rd approach)
 
 **Until HERE:...**
 ## Different Implementations
