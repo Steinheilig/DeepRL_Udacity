@@ -10,9 +10,10 @@ The agent performs <done steps> 1001.0 +/- 0.0 before an epoch is terminated. He
 ## Preprocessing
 The state space consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm and (I guess - information not provided by Udacity) some states additionally encode sensing target position.
 Most of the state features are not normalized. In fact, some feature values are in [-20,20] while others are in [-1,1] which can significantly decrease NN training performance. <br>
-The state values are (optional) scaled by dividing with the elements of the scaling matrix:
+The state values are (optional) scaled by dividing with the elements of the scaling matrix:<br>
 [ 5,  5,  5,  1,  1,  1,  1, 11,  3,  4, 14, 10, 14, 10, 11, 10,  1,  1,  1,  1, 12,  9,  8, 18,
- 20, 17,  8,  1,  8,  1,  1,  1,  1]
+ 20, 17,  8,  1,  8,  1,  1,  1,  1]<br>
+The matrix (int and float values) are stored in [state_scale.npz](state_scale.npz)
 
 ## First Attempt - DDPG (single-agent env.)
 Train in the single agent environment with the DDPG algorithm. This is tidious work since a single agent learns very slow and hyperparameter and network architecture optimization (or even testing the influence of a subset) becomes nearly impossible. 
@@ -27,11 +28,21 @@ I stopped this approach and searched the [Udacity knowledge base](https://knowle
 > https://knowledge.udacity.com/questions/772148
  
  
-## Second Attempt - DDPG (multi-agent env.)
+## Second Attempt - DDPG (multi-agent env. / every step update)
 Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at each time step. 
 This is working more smoothly, each epoch the average score keeps increasing. Still the time spend traing the agent is considerable long.
-Hyperparameter and network architecture optimization (or even testing the influence of a subset) is still difficult and hyperparameter and NN architectures are kept constant compared to the first attempt (described in detail below). 
-
+Hyperparameter and network architecture optimization (or even testing the influence of a subset) is still difficult and hyperparameter and NN architectures are kept constant compared to the first attempt (described in detail below) except, that gradient clipping was introduced on both actor and critic gradient updates. 
+<img src="./images/Screen_DDPG_Multi__EveryStep.JPG" width="80%"> <br>
+The agent learned to successfully solve the task. It took around 36h hours on my local (CPU) machine to train until the >= 30 rewards on average (over 100 succeeeding episondes and averaged over all 20 agents) was achived.  
+ 
+## Third Attempt - DDPG (multi-agent env. / every nth step update of k epochs)
+Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at every nth step for k epochs. 
+The average score keeps increasing however the progress was constantly interrupted by problems with the Udacity Workspace. 
+The connection was unstable, kernels were resetted and it was impossible to train for a long enough uninterruppted time span...
+Hyperparameter and network architecture optimization (or even testing the influence of a subset) was impossible and hyperparameter and NN architectures are kept similar compared to the first and second attempt (described in detail below). 
+<img src="./images/Screen_DDPG_Multi__EveryStep.JPG" width="80%"> <br>
+I gave up at some point because of the enoying technical problems with the remote workspace (provided via web interface / Jupyther notebook).
+ 
 ## Learning Algorithm
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
 The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. One named **actor**, learning a function approximation of the optimal deterministic policy \mu(s;\Theata_\mu), i.e. the best action a to take in a given states s: argmax_a Q(s,a).<br>The other neural network is called **critic** and is used to approximate the action-value function Q for a given state s and the optimal action a determinied by policy \mu(s;\Theata_\mu), i.e. the action value function Q(s,\mu(s;\Theata_\mu));\Theta_Q). \Theta_\mu and \Theta_\Q indicate that the policy dependes on the network weights of the actor and the action-value function dependes on the network weights of the critic, respectively.<br> While the network uses and actor and a critic it is not directly an actor-critic (AC) approach and works more like an approximated DQN. The actor tries to predict the best action in a given state, the critic maximizes the Q values of the next state and is not used as a learned baseline (as in traditional AC approaches).<br>
