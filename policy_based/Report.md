@@ -79,8 +79,9 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 
 ## Learning Algorithm - PPO
 I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment. PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br> 
-**ADD PPO explanation** 
-**ADD PPO network layout** 
+**ADD PPO explanation** <br>
+I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU activation functions with 256-128-32 hidden units. The final output is passed through a tanh function to ensure action values in [-1,1]. The actions (four numbers /float values) correspond to torques applicable to the two joints of the robot.<br>
+<img src="./images/PPO_struc.JPG" width="40%"><br>
  
 The Code is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
 The following adjustments are made:<br>
