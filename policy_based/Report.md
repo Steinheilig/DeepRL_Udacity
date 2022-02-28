@@ -79,7 +79,8 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 
 ## Learning Algorithm - PPO
 I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment. PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br> 
-**ADD PPO explaination** 
+**ADD PPO explanation** 
+**ADD PPO network layout** 
  
 The Code is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
 The following adjustments are made:<br>
@@ -92,8 +93,13 @@ The following adjustments are made:<br>
 - use gradient clipping to prevent gradient explosion: torch.nn.utils.clip_grad_norm(policy.parameters(), 1)  in gradient ascent step
 
 All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
-**ADD HYPERPARAMETERS*
-  
+- discount_rate = .99  # reward discount factor
+- epsilon = 0.1  # clipping epsilon
+- epsilon_decay = .999 # factor of epsilon decay per episode
+- beta = .01 # added noise to computed gradient  
+- beta_decay = .995 # reduces exploration in later runs / decay per episode
+- tmax = **800** # max number of steps per epoch 
+- SGD_epoch = 4 # number of gradient ascent steps per episode 
  
 ## Different Implementations
 Five different approaches are tested and compared:
