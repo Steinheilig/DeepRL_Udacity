@@ -83,7 +83,7 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 - update how many epochs = 20 , UPDATE_MANY_EPOCHS  (only for 3rd approach)
 
 ## Learning Algorithm - PPO
-I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment.  
+I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/)) in continous action space to try to solve the assignment. PPO is a policy function approximation (trying to approximate an optimal policy for any given state) and more specifically a policy gradient method, where trajectories \tau=(s0,a0,s1,a1,..sH,aH,sH+1) and rewards R(\tau)=r1+r2,..+rH+rH+1 for steps 0 to H (horizont)+1 are sampled with the goal to maximize the expected return U(\Theta). Here, \Theta are the weights of a deep neural network and U(\Theta)=\sum_\tauP(\tau;\Theta)R(\tau), i.e. the exected return is the sum over all trajectories of the probability that this trajectory is chosen given policy function approximation defined by \Theta and the reward R given the trajectory \tau. To reduce noise in the gradient estimate N trajectories (in this case 20 agents in parallel with the same policy approximation network) are sampled in parallel and the reward is normalized using mean and std of the rewards. To solve the credit assignment problem, for step t only R_t^future, the future rewards (ignoring the past rewards) are used for the policy gradient. 
  
 **ADD PPO explanation** <br>
  
@@ -132,4 +132,5 @@ To further improving the agent's performance:
 - optimze network architectures
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
+- PPO: add replay buffer with importance sampling, to recycle trajectories and speed up training
 - try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
