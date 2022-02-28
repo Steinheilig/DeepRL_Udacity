@@ -85,12 +85,11 @@ Three different approaches are tested and compared:
 Functional, well-documented, and organized code for training the agent is provided for the 3 different implementations via Jupiter notebooks.
    
 ## Plot of Rewards
-1. Speedrunner -> 782 episodes needed <br> <img src="./images/Solution SpeedRunner1.JPG" width="40%">
-2. Speedrunner2 -> 1001 episodes needed <br> <img src="./images/Solution SpeedRunner2_seed43.JPG" width="40%">
-3. Normal -> 968 episodes needed <br> <img src="./images/Solution Normal_Scaled.jpg " width="40%">
-
+2nd Attempt needed 274 episodes <br> <img src="./images/Screen_DDPG_Multi_EveryStep_274.JPG" width="80%"> <br>
+ 
 ## Ideas for Future Work
 To further improving the agent's performance: 
+- move to more stable GPU environment, with multiple GPUs to train in paralle with different hyperparameters and networks
 - tune hyperparameters
 - optimze network architectures
 - add prioritized replay buffer
