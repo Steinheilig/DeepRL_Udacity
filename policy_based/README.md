@@ -40,9 +40,11 @@ To run the code in the repository start with either of the different training co
 
 ## Training Code 
 Functional, well-documented, and organized code for training the agent is provided for different implementations via Jupiter notebooks:
-1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner.ipynb)
-2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb)
-3. Normal <br> [NormalRun.ipynb](NormalRun.ipynb)
+1. DDPG - single agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
+2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
+3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
+4. PPO - single agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
+5. PPO - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
 
 ## Framework
 The code is written in PyTorch and Python 3.
