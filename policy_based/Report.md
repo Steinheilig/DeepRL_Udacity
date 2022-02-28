@@ -27,21 +27,23 @@ I stopped this approach and searched the [Udacity knowledge base](https://knowle
 >   - Update every X (e.g., 30) time steps the NNs. <br>
 > https://knowledge.udacity.com/questions/772148
  
- 
 ## Second Attempt - DDPG (multi-agent env. / every step update)
 Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at each time step. 
 This is working more smoothly, each epoch the average score keeps increasing. Still the time spend traing the agent is considerable long.
-Hyperparameter and network architecture optimization (or even testing the influence of a subset) is still difficult and hyperparameter and NN architectures are kept constant compared to the first attempt (described in detail below) except, that gradient clipping was introduced on both actor and critic gradient updates. 
+Hyperparameter and network architecture optimization (or even testing the influence of a subset) is still difficult and hyperparameter and NN architectures are kept constant compared to the first attempt (described in detail below) except, that gradient clipping was introduced on both actor and critic gradient updates. <br>
 <img src="./images/Screen_DDPG_Multi__EveryStep.JPG" width="80%"> <br>
-The agent learned to successfully solve the task. It took around 36h hours on my local (CPU) machine to train until the >= 30 rewards on average (over 100 succeeeding episondes and averaged over all 20 agents) was achived.  
+The **agent learned to successfully solve the task**. It took around 36h hours on my local (CPU) machine to train until the >= 30 rewards on average (over 100 succeeeding episondes and averaged over all 20 agents) was achived.  
  
 ## Third Attempt - DDPG (multi-agent env. / every nth step update of k epochs)
 Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at every nth step for k epochs. 
 The average score keeps increasing however the progress was constantly interrupted by problems with the Udacity Workspace. 
 The connection was unstable, kernels were resetted and it was impossible to train for a long enough uninterruppted time span...
-Hyperparameter and network architecture optimization (or even testing the influence of a subset) was impossible and hyperparameter and NN architectures are kept similar compared to the first and second attempt (described in detail below). 
-<img src="./images/Screen_DDPG_Multi__EveryStep.JPG" width="80%"> <br>
-I gave up at some point because of the enoying technical problems with the remote workspace (provided via web interface / Jupyther notebook).
+Hyperparameter and network architecture optimization (or even testing the influence of a subset) was impossible and hyperparameter and NN architectures are kept similar compared to the first and second attempt (described in detail below). <br>
+<img src="./images/Screen_2nd_2_Attemp_SystemStop.jpg " width="80%"> <br>
+I gave up at some point because of the annoying technical problems with the remote workspace (provided via web interface / Jupyther notebook).<br>
+<img src="./images/Workspace_down.jpg " width="80%"> <br>
+> We experienced a brief interruption caused by an outage. The issue has now been resolved and you can resume your access on Udacity. 
+ 
  
 ## Learning Algorithm
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
