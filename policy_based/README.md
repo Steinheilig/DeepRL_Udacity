@@ -28,23 +28,19 @@ You will install/add a new Python environment called drlnd to your Python instal
 
 2) Check out the [Udacity Git](https://github.com/udacity/deep-reinforcement-learning/tree/master/p2_continuous-control#getting-started) for install instruction for the Unity ML environment.<br>
 
-
 It seems to be possible to work with the Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server)
 
-
-**SO FAR ... SETUP**
-
-
 ## Instructions
-To run the code in the repository start with either of the different training codes provided. It will import [model_MLP.py](model_MLP.py) (neural network definition to approximate the action-value function Q(S,A)) and [dqn_agent.py](dqn_agent.py) (the Deep-Q Network implementation code).
+To run the code in the repository start with any of the different training codes provided. The DDPG code will setup two networks (well in fact 4 networks: target and local network for each) via [Single/EveryStep](DDPG_Single_model_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_model_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_model_kthStep.py), respectively. Additionally, a DDPG agent ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_agent_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_agent_kthStep.py), respectivly) is used, based on  the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
+The PPO Jupyter notebooks (single/multi agents) include policy network definition, trajectory generation, clipped surrogate function and training in a single file. 
 
 ## Training Code 
 Functional, well-documented, and organized code for training the agent is provided for different implementations via Jupiter notebooks:
 1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
 2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
 3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_kthStep.ipynb](DDPG_Multi_Train_kthStep.ipynb)
-4. PPO - single agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
-5. PPO - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
+4. PPO - single agents / every step update <br> [PPO_Single_Train.ipynb](PPO_Single_Train.ipynb)
+5. PPO - multi agents / every step update <br> [PPO_Multi_Train.ipynb](PPO_Multi_Train.ipynb)
 
 ## Framework
 The code is written in PyTorch and Python 3.
