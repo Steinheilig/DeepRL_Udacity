@@ -73,16 +73,21 @@ All learning hyperparameters are compareable or only slightly adjusted (highligh
 - learning rate (actor) = 1e-4 (Adam optimizer), LR_ACTOR
 - learning rate (critic) = **1e-3** (Adam optimizer), LR_CRITIC
 - L2 weight decay (critic) = **0**, WEIGHT_DECAY
-- how often to update the networks, ever 30th step, multiple_update_steps (only for 3rd approach)
+- how often to update the networks = 1, multiple_update_steps (only for 1st and 2nd approach)
+- update every kth step= 30 , UPDATE_EVERY_NTH_STEP (only for 3rd approach)
+- update how many epochs = 20 , UPDATE_MANY_EPOCHS  (only for 3rd approach)
+
+## Learning Algorithm - PPO
+I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space wto solve the assignment. <br>
+ 
+**Until HERE:...**
+
+## Different Implementations
+Five different approaches are tested and compared:
 
 **Until HERE:...**
-## Different Implementations
-Three different approaches are tested and compared:
-1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner.ipynb) <br> Motivated by the idea that reducing turning might help to find a suitable Q-approx faster.
-2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb) <br> Motivated by the idea that reducing turning and omiiting backward movement might help to find a suitable Q-approx faster (compare [speed running - computer game](https://www.youtube.com/watch?v=CyhI8Rghaw8).
-3. Normal <br> [NormalRun.ipynb](NormalRun.ipynb) <br> Let's see how long it take to learn with all 4 actions available to the robot. In this implementation the state space was scaled, such that the last two state features are within [-1:1] (all other features remain unscaled).
 
-Functional, well-documented, and organized code for training the agent is provided for the 3 different implementations via Jupiter notebooks.
+Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupiter notebooks.
    
 ## Plot of Rewards
 2nd Attempt needed 274 episodes <br> <img src="./images/Screen_DDPG_Multi_EveryStep_274.JPG" width="80%"> <br>
@@ -92,6 +97,6 @@ To further improving the agent's performance:
 - move to more stable GPU environment, with multiple GPUs to train in paralle with different hyperparameters and networks
 - tune hyperparameters
 - optimze network architectures
-- add prioritized replay buffer
-- add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
-- try policy gradient method like Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) or an actor-critic (AC) method
+- DDPG: add prioritized replay buffer 
+- DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
+- try other policy gradient method like an actor-critic (AC) method
