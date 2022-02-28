@@ -50,7 +50,7 @@ Functional, well-documented, and organized code for training the agent is provid
 The code is written in PyTorch and Python 3.
 
 ## Saved Model Weights
-The submission includes the saved model weights of the successful agent:<br>
+The submission includes the saved model weights of the successful agent (number 2) :<br>
 DDPG method - multi agents/every step update: [actor weights](DDPG_checkpoint_actor_300.pth)<br>
 DDPG method - multi agents/every step update: [critic weights](DDPG_checkpoint_critic_300.pth)<br>
 
