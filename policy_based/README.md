@@ -48,10 +48,9 @@ Functional, well-documented, and organized code for training the agent is provid
 The code is written in PyTorch and Python 3.
 
 ## Saved Model Weights
-The submission includes the saved model weights of the successful agents:
-1. Speedrunner (reduced action space: Only forward, backward & left) <br> [checkpoint_Speedrunner1_DONE.pth](checkpoint_Speedrunner1_DONE.pth)
-2. Speedrunner2 (reduced action space: Only forward & left) <br> [checkpoint_Speedrunner2_DONE.pth](checkpoint_Speedrunner2_DONE.pth)
-3. Normal <br> [checkpoint_Normal_scaled.pth](checkpoint_Normal_scaled.pth)
+The submission includes the saved model weights of the successful agent:<br>
+DDPG method - multi agents/every step update: [actor weights](DDPG_checkpoint_actor_300.pth)<br>
+DDPG method - multi agents/every step update: [critic weights](DDPG_checkpoint_critic_300.pth)<br>
 
 ## Report
 The [report](Report.md) providing a description of the implementation, more specifically the learning algorithm, along with the chosen hyperparameters and the model architectures 
