@@ -94,6 +94,7 @@ The following adjustments are made:<br>
 
 All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
 - discount_rate = .99  # reward discount factor
+- learning rate = **1e-3** # learning rate of Adam optimizer
 - epsilon = 0.1  # clipping epsilon
 - epsilon_decay = .999 # factor of epsilon decay per episode
 - beta = .01 # added noise to computed gradient  
