@@ -78,23 +78,28 @@ All learning hyperparameters are compareable or only slightly adjusted (highligh
 - update how many epochs = 20 , UPDATE_MANY_EPOCHS  (only for 3rd approach)
 
 ## Learning Algorithm - PPO
-I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space wto solve the assignment. <br>
+I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment.<br>
  
 **Until HERE:...**
 
 ## Different Implementations
 Five different approaches are tested and compared:
+1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
+2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
+3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_kthStep.ipynb](DDPG_Multi_Train_kthStep.ipynb)
+4. PPO - single agents / every step update <br> [PPO_Single_Train.ipynb](PPO_Single_Train.ipynb)
+5. PPO - multi agents / every step update <br> [PPO_Multi_Train.ipynb](PPO_Multi_Train.ipynb)
 
-**Until HERE:...**
-
-Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupiter notebooks.
+Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
    
 ## Plot of Rewards
-2nd Attempt needed 274 episodes <br> <img src="./images/Screen_DDPG_Multi_EveryStep_274.JPG" width="80%"> <br>
+2nd attempt needed 274 episodes <br> <img src="./images/Screen_DDPG_Multi_EveryStep_274.JPG" width="80%"> <br>
+All other attempts did not reach the goal in the given training time (see above). 
  
 ## Ideas for Future Work
 To further improving the agent's performance: 
 - move to more stable GPU environment, with multiple GPUs to train in paralle with different hyperparameters and networks
+- Setup Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server)
 - tune hyperparameters
 - optimze network architectures
 - DDPG: add prioritized replay buffer 
