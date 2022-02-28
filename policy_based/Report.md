@@ -87,7 +87,7 @@ I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-br
  
 **ADD PPO explanation** <br>
  
-I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU activation functions with 256-128-32 hidden units. The final output is passed through a tanh function to ensure action values in [-1,1]. The actions (four numbers /float values) correspond to torques applicable to the two joints of the robot.<br>
+I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU activation functions with 256-128-32 (single) and 128-64-16 (multi) hidden units. The final output is passed through a tanh function to ensure action values in [-1,1]. The actions (four numbers /float values) correspond to torques applicable to the two joints of the robot.<br>
 <img src="./images/PPO_struc.JPG" width="40%"><br>
  
 The Code is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
@@ -101,13 +101,13 @@ The following adjustments are made:<br>
 - use gradient clipping to prevent gradient explosion: torch.nn.utils.clip_grad_norm(policy.parameters(), 1)  in gradient ascent step
 
 All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
-- discount_rate = .99  # reward discount factor
+- discount_rate = .99 (single); **0.99999** (multi.)  # reward discount factor
 - learning rate = **1e-3** # learning rate of Adam optimizer
 - epsilon = 0.1  # clipping epsilon
-- epsilon_decay = .999 # factor of epsilon decay per episode
-- beta = .01 # added noise to computed gradient  
-- beta_decay = .995 # reduces exploration in later runs / decay per episode
-- tmax = **800** # max number of steps per epoch 
+- epsilon_decay = .999 (single); **1.** (multi.) # factor of epsilon decay per episode
+- beta = .01 (single); **0.05** (multi) # added noise to computed gradient  
+- beta_decay = .995 (single); **1** (multi) # reduces exploration in later runs / decay per episode
+- tmax = **800** (single); **990** (multi) # max number of steps per epoch 
 - SGD_epoch = 4 # number of gradient ascent steps per episode 
  
 ## Different Implementations
