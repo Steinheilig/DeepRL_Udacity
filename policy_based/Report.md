@@ -83,7 +83,7 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 - update how many epochs = 20 , UPDATE_MANY_EPOCHS  (only for 3rd approach)
 
 ## Learning Algorithm - PPO
-I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment. PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br> 
+I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment.  
  
 **ADD PPO explanation** <br>
  
@@ -132,4 +132,4 @@ To further improving the agent's performance:
 - optimze network architectures
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
-- try other policy gradient method like an actor-critic (AC) method
+- try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
