@@ -32,7 +32,7 @@ Train in the multi-agent (20) environment with the DDPG algorithm - updating the
 This is working more smoothly, each epoch the average score keeps increasing. Still the time spend traing the agent is considerable long.
 Hyperparameter and network architecture optimization (or even testing the influence of a subset) is still difficult and hyperparameter and NN architectures are kept constant compared to the first attempt (described in detail below) except, that gradient clipping was introduced on both actor and critic gradient updates. <br>
 <img src="./images/Screen_DDPG_Multi__EveryStep.JPG" width="80%"> <br>
-The **agent learned to successfully solve the task**. It took around 36h hours on my local (CPU) machine to train until the >= 30 rewards on average (over 100 succeeeding episondes and averaged over all 20 agents) was achived.  
+The **agent learned to successfully solve the task**. It took around 36h hours on my local (CPU) machine to train until the >= 30 rewards on average (over 100 succeeeding episodes and averaged over all 20 agents) was achived.  
  
 ## Third Attempt - DDPG (multi-agent env. / every nth step update of k epochs)
 Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at every nth step for k epochs. 
@@ -45,6 +45,11 @@ I gave up at some point because of the annoying technical problems with the remo
 Udacity technical support confirmed problems with their servers but I'm still facing problems till the time of project submission... <br>
 > We experienced a brief interruption caused by an outage. The issue has now been resolved and you can resume your access on Udacity. 
  
+## Fourth Attempt - PPO (single-agent env.)
+**TODO**
+ 
+## Fith Attempt - PPO (multi-agent env.)
+ **TODO**
  
 ## Learning Algorithm - DDPG 
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
@@ -79,7 +84,9 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 
 ## Learning Algorithm - PPO
 I use the Proximal Policy Optimization ([PPO](https://www.geeksforgeeks.org/a-brief-introduction-to-proximal-policy-optimization/) in continous action space to try to solve the assignment. PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br> 
+ 
 **ADD PPO explanation** <br>
+ 
 I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU activation functions with 256-128-32 hidden units. The final output is passed through a tanh function to ensure action values in [-1,1]. The actions (four numbers /float values) correspond to torques applicable to the two joints of the robot.<br>
 <img src="./images/PPO_struc.JPG" width="40%"><br>
  
