@@ -41,6 +41,9 @@ Functional, well-documented, and organized code for training the agent is provid
 3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_kthStep.ipynb](DDPG_Multi_Train_kthStep.ipynb)
 4. PPO <br> [PPO_Train.ipynb](PPO_Train.ipynb)
 
+## Visualize Agent Performance after Training
+Use [ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb) to observe the agent (DDGP 2nd approach) after training and reaching a mean reward of >= 30 for 100 succeeding epochs averaged over all 20 training agents. 
+
 ## Framework
 The code is written in PyTorch and Python 3.
 
