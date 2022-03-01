@@ -133,7 +133,8 @@ Functional, well-documented, and organized code for training the agent is provid
    
 ## Plot of Rewards
 2nd attempt needed 274 episodes <br> <img src="./images/Screen_DDPG_Multi_EveryStep_274.JPG" width="80%"> <br>
-All other attempts did not reach the goal in the given training time (see above). 
+All other attempts did not reach the goal in the given training time (see above).<br>
+The agent can be tested using [ShowAgentPerformance .ipynb](ShowAgentPerformance .ipynb)
  
 ## Ideas for Future Work
 To further improving the agent's performance: 
@@ -143,4 +144,5 @@ To further improving the agent's performance:
 - optimze network architectures
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
+- DDPG: Ornsetein-Uhlenbeck noise was added to the action space. It has been [shown](https://openai.com/blog/better-exploration-with-parameter-noise/) that adding noise to the parameters of the neural network policy can improve performance. 
 - try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
