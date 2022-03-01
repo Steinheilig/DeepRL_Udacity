@@ -45,11 +45,7 @@ I gave up at some point because of the annoying technical problems with the remo
 Udacity technical support confirmed problems with their servers but I'm still facing problems till the time of project submission... <br>
 > We experienced a brief interruption caused by an outage. The issue has now been resolved and you can resume your access on Udacity. 
  
-## Fourth Attempt - PPO (single-agent env.)
-**TODO**
- 
-## Fith Attempt - PPO (multi-agent env.)
- **TODO**
+## Fourth Attempt - PPO 
  
 ## Learning Algorithm - DDPG 
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
@@ -95,7 +91,7 @@ Here, \Theta are the weights of a deep neural network and U(\Theta)=\sum_\tauP(\
  Additional policy clipping is used to avoid problems when \Theta and \Theta' are not close enough anymore and the approximation for the gradient is far off. <br> 
 <img src="./images/PPO_clipped_formula.JPG" width="55%"><br>
  
-I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU activation functions with 256-128-32 (single) and 128-64-16 (multi) hidden units. The final output is passed through a tanh function to ensure action values in [-1,1]. The actions (four numbers /float values) correspond to torques applicable to the two joints of the robot.<br>
+I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU activation functions with 256-128-32 hidden units. The final output is passed through a tanh function to ensure action values in [-1,1]. The actions (four numbers /float values) correspond to torques applicable to the two joints of the robot.<br>
 <img src="./images/PPO_struc.JPG" width="35%"><br>
  
 The Code is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
@@ -107,16 +103,16 @@ The following adjustments are made:<br>
 - changed actions to be floats values in clipped_surrogate function: actions = torch.tensor(actions, dtype=torch.float, device=device)   # changed to float 
 - revised states_to_prob function (not dealing with pixel arrays anymore)
 - use gradient clipping to prevent gradient explosion: torch.nn.utils.clip_grad_norm(policy.parameters(), 1)  in gradient ascent step
-- revised surrogate function: remove reward normalization for single environment (otherwhise mean subtraction return zero reward for all times); exclude regularization term - since it uses log(x) and instead of action probabilities action values in [-1:1] are present. 
+- revised surrogate function: exclude regularization term (i.e. beta==0) - since initial code uses log(x) and instead of action probabilities action values in [-1:1] are present. 
  
 All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
-- discount_rate = .99 (single); **0.99999** (multi.)  # reward discount factor
+- discount_rate = **0.99999**  # reward discount factor
 - learning rate = **1e-3** # learning rate of Adam optimizer
 - epsilon = 0.1  # clipping epsilon
-- epsilon_decay = .999 (single); **1.** (multi.) # factor of epsilon decay per episode
-- beta = .01 (single); **0.05** (multi) # added noise to computed gradient  
-- beta_decay = .995 (single); **1** (multi) # reduces exploration in later runs / decay per episode
-- tmax = **800** (single); **990** (multi) # max number of steps per epoch 
+- epsilon_decay =  **1.**  # factor of epsilon decay per episode
+- beta = **0** # added noise to computed gradient  
+- beta_decay = **1**  # reduces exploration in later runs / decay per episode
+- tmax = **990**  # max number of steps per epoch 
 - SGD_epoch = 4 # number of gradient ascent steps per episode 
  
 ## Different Implementations
@@ -124,8 +120,7 @@ Five different approaches are tested and compared:
 1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
 2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
 3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_kthStep.ipynb](DDPG_Multi_Train_kthStep.ipynb)
-4. PPO - single agents / every step update <br> [PPO_Single_Train.ipynb](PPO_Single_Train.ipynb)
-5. PPO - multi agents / every step update <br> [PPO_Multi_Train.ipynb](PPO_Multi_Train.ipynb)
+4. PPO <br> [PPO_Train.ipynb](PPO_Single_Train.ipynb)
 
 Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
    
