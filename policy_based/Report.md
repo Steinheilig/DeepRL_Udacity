@@ -46,7 +46,7 @@ Udacity technical support confirmed problems with their servers but I'm still fa
  
 ## Fourth Attempt - PPO 
 Training in the multi-agent (20) environment with the PPO algorithm. <br>
-<img src="./images/Screen_PPO.JPG" width="50%"> <br>
+<img src="./images/Screen_PPO.JPG" width="40%"> <br>
 Despite several rounds of debugging and 6000 epochs (4 gradient steps per epoch), no change of performance is observed.
  
 ## Learning Algorithm - DDPG 
