@@ -35,7 +35,7 @@ Hyperparameter and network architecture optimization (or even testing the influe
 The **agent learned to successfully solve the task**. It took around 36h hours on my local (CPU) machine to train until the >= 30 rewards on average (over 100 succeeeding episodes and averaged over all 20 agents) was achived.  
  
 ## Third Attempt - DDPG (multi-agent env. / every nth step update of k epochs)
-Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at every nth step for k epochs. 
+Training in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at every nth step for k epochs. 
 The average score keeps increasing however the progress was constantly interrupted by problems with the Udacity Workspace. 
 The connection was unstable, kernels were resetted and it was impossible to train for a long enough uninterruppted time span...
 Hyperparameter and network architecture optimization (or even testing the influence of a subset) was impossible and hyperparameter and NN architectures are kept similar compared to the first and second attempt (described in detail below). <br>
@@ -46,6 +46,9 @@ Udacity technical support confirmed problems with their servers but I'm still fa
 > We experienced a brief interruption caused by an outage. The issue has now been resolved and you can resume your access on Udacity. 
  
 ## Fourth Attempt - PPO 
+Training in the multi-agent (20) environment with the PPO algorithm. <br>
+<img src="./images/Screen_PPO.JPG" width="50%"> <br>
+Despite several rounds of debugging and 6000 epochs (4 gradient steps per epoch), no change of performance is observed.
  
 ## Learning Algorithm - DDPG 
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
@@ -136,5 +139,4 @@ To further improving the agent's performance:
 - optimze network architectures
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
-- PPO: add replay buffer with importance sampling, to recycle trajectories and speed up training
 - try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
