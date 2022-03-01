@@ -28,7 +28,9 @@ You will install/add a new Python environment called drlnd to your Python instal
 
 2) Check out the [Udacity Git](https://github.com/udacity/deep-reinforcement-learning/tree/master/p2_continuous-control#getting-started) for install instruction for the Unity ML environment.<br>
 
-It seems to be possible to work with the Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server).
+It seems to be possible to work with the Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server). In fact, it's quite easy: 
+
+         env = UnityEnvironment(file_name='C:\where_ever\Reacher_Windows_x86_64_multiple_agents\Reacher.exe',no_graphics=True)
 
 ## Instructions
 To run the code in the repository start with any of the different training codes provided. The DDPG code will setup two networks (well in fact 4 networks: target and local network for each) via [Single/EveryStep](DDPG_Single_model_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_model_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_model_kthStep.py), respectively. Additionally, a DDPG agent ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_agent_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_agent_kthStep.py), respectivly) is used, based on  the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
