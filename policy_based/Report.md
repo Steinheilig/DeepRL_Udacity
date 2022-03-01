@@ -4,8 +4,7 @@ The report provides a description of the implementation to solve the 2 joint rea
 
 ## Baseline Performance
 A complete random agent (action values drawn from standard Normal distribution (mean=0, stdev=1) and clipped to [-1,1]) results in <br>
-<score> 0.140 +/- 0.197 <br>
-The agent performs <done steps> 1001.0 +/- 0.0 before an epoch is terminated. Hence, tmax of continous trajectory is == 1000.
+<score> 0.140 +/- 0.197. The agent performs <done steps> 1001.0 +/- 0.0 before an epoch is terminated. Hence, tmax of continous trajectory is == 1000.
 
 ## Preprocessing
 The state space consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm and (I guess - information not provided by Udacity) some states additionally encode sensing target position.
@@ -13,11 +12,11 @@ Most of the state features are not normalized. In fact, some feature values are 
 The state values are (optional) scaled by dividing with the elements of the scaling matrix:<br>
 [ 5,  5,  5,  1,  1,  1,  1, 11,  3,  4, 14, 10, 14, 10, 11, 10,  1,  1,  1,  1, 12,  9,  8, 18,
  20, 17,  8,  1,  8,  1,  1,  1,  1]<br>
-The matrix (int and float values) are stored in [state_scale.npz](state_scale.npz)
+The matrix (int and float values) is stored in [state_scale.npz](state_scale.npz)
 
 ## First Attempt - DDPG (single-agent env.)
-Train in the single agent environment with the DDPG algorithm. This is tidious work since a single agent learns very slow and hyperparameter and network architecture optimization (or even testing the influence of a subset) becomes nearly impossible. 
-After successfully finding an architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal))  that at least lead to some observable learning behavior<br>
+Training in the single agent environment with the DDPG algorithm. This is tidious work since a single agent learns very slow and hyperparameter and network architecture optimization (or even testing the influence of a subset) becomes nearly impossible. 
+After successfully finding an architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal))  that at least lead to some observable learning behavior,<br>
 <img src="./images/FirstAttempt_learning.jpg" width="60%"> <br>
 I stopped this approach and searched the [Udacity knowledge base](https://knowledge.udacity.com/) for some support to speed up project progress... <br>
  
@@ -28,8 +27,8 @@ I stopped this approach and searched the [Udacity knowledge base](https://knowle
 > https://knowledge.udacity.com/questions/772148
  
 ## Second Attempt - DDPG (multi-agent env. / every step update)
-Train in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at each time step. 
-This is working more smoothly, each epoch the average score keeps increasing. Still the time spend traing the agent is considerable long.
+Training in the multi-agent (20) environment with the DDPG algorithm - updating the newtork weights at each time step. 
+This is working more smoothly, each epoch the average score keeps increasing. Still the time spend training the agent is considerable long.
 Hyperparameter and network architecture optimization (or even testing the influence of a subset) is still difficult and hyperparameter and NN architectures are kept constant compared to the first attempt (described in detail below) except, that gradient clipping was introduced on both actor and critic gradient updates. <br>
 <img src="./images/Screen_DDPG_Multi__EveryStep.JPG" width="80%"> <br>
 The **agent learned to successfully solve the task**. It took around 36h hours on my local (CPU) machine to train until the >= 30 rewards on average (over 100 succeeeding episodes and averaged over all 20 agents) was achived.  
@@ -52,17 +51,22 @@ Despite several rounds of debugging and 6000 epochs (4 gradient steps per epoch)
  
 ## Learning Algorithm - DDPG 
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
-The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. One named **actor**, learning a function approximation of the optimal deterministic policy \mu(s;\Theata_\mu), i.e. the best action a to take in a given states s: argmax_a Q(s,a).<br>The other neural network is called **critic** and is used to approximate the action-value function Q for a given state s and the optimal action a determinied by policy \mu(s;\Theata_\mu), i.e. the action value function Q(s,\mu(s;\Theata_\mu));\Theta_Q). \Theta_\mu and \Theta_\Q indicate that the policy dependes on the network weights of the actor and the action-value function dependes on the network weights of the critic, respectively.<br> While the network uses and actor and a critic it is not directly an actor-critic (AC) approach and works more like an approximated DQN. The actor tries to predict the best action in a given state, the critic maximizes the Q values of the next state and is not used as a learned baseline (as in traditional AC approaches).<br>
-The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
+ 
+ The DDPG requires two deep (or shallow and sufficently wide) neural neurworks. One named **actor**, learning a function approximation of the optimal deterministic policy \mu(s;\Theata_\mu), i.e. the best action a to take in a given states s: argmax_a Q(s,a).<br>The other neural network is called **critic** and is used to approximate the action-value function Q for a given state s and the optimal action a determinied by policy \mu(s;\Theata_\mu), i.e. the action value function Q(s,\mu(s;\Theata_\mu));\Theta_Q). \Theta_\mu and \Theta_\Q indicate that the policy dependes on the network weights of the actor and the action-value function dependes on the network weights of the critic, respectively.<br>
+ 
+ While the network uses and actor and a critic it is not directly an actor-critic (AC) approach and works more like an approximated DQN. The actor tries to predict the best action in a given state, the critic maximizes the Q values of the next state and is not used as a learned baseline (as in traditional AC approaches).<br>
+ 
+ The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
 The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
-The two networks (well in fact 4 networks: target and local network for each) are implemented in [Single/EveryStep](DDPG_Single_model_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_model_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_model_kthStep.py), respectively. They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the [LeakyReLU](https://paperswithcode.com/method/leaky-relu) activation functions are replaced by simple ReLU non-linearities.<br> 
+ 
+ The two networks (well in fact 4 networks: target and local network for each) are implemented in [Single/EveryStep](DDPG_Single_model_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_model_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_model_kthStep.py), respectively. They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the [LeakyReLU](https://paperswithcode.com/method/leaky-relu) activation functions are replaced by simple ReLU non-linearities.<br> 
 The DDPG agent code ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_agent_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_agent_kthStep.py), respectivly) augments the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
  The following adjustments are made:<br>
 - interaction with single or multi-agent Unity-ML environment
 - preprosessing of state values (scaling)
 - augmenting the provided classes to allow hyperparameter and NN architecture changes on the fly, e.g. noise on/off
-- a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ 
+- a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ - alternatively (only 3rd approach) UPDATE_EVERY_NTH_STEP  and UPDATE_MANY_EPOCHS are introduced to controll k epoch updates after n steps
 - gradients of the critic are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), 1) 
 - gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), 1) (only for 2nd approach) 
  
@@ -85,7 +89,7 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 I use the Proximal Policy Optimization ([PPO](https://arxiv.org/abs/1707.06347)) in continous action space to try to solve the assignment. An introduction to PPO can be found [here](https://python.plainenglish.io/policy-optimization-ppo-544a7fff196f) and an example how to play Sonic the Hedgehog 2 and 3 with an PPO agent can be found [here](https://towardsdatascience.com/proximal-policy-optimization-ppo-with-sonic-the-hedgehog-2-and-3-c9c21dbed5e).<br>
 
  PPO is a policy function approximation (trying to approximate an optimal policy for any given state) and more specifically a policy gradient method, where trajectories \tau=(s0,a0,s1,a1,..sH,aH,sH+1) and rewards R(\tau)=r1+r2,..+rH+rH+1 for steps 0 to H (horizont)+1 are sampled with the goal to maximize the expected return U(\Theta) (\sim g, where g is an estimate of the gradient of the expected reward). 
-Here, \Theta are the weights of a deep neural network and U(\Theta)=\sum_\tauP(\tau;\Theta)R(\tau), i.e. the exected return is the sum over all trajectories of the probability that this trajectory is chosen given policy function approximation defined by \Theta and the reward R given the trajectory \tau. 
+Here, \Theta are the weights of a deep neural network and U(\Theta)=\sum_\tauP(\tau;\Theta)R(\tau), i.e. the exected return is the sum over all trajectories and their probability of occurance given policy function approximation defined by \Theta and the reward R given the trajectory \tau. 
  
  To reduce noise in the gradient estimate N trajectories (in this case 20 agents in parallel with the same policy approximation network) are sampled in parallel and the reward is normalized using mean and std of the rewards. To solve the credit assignment problem, for step t only R_t^future, the future rewards (ignoring the past rewards) are used for the policy gradient. <br>
  
