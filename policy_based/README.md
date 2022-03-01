@@ -39,8 +39,7 @@ Functional, well-documented, and organized code for training the agent is provid
 1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
 2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
 3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_kthStep.ipynb](DDPG_Multi_Train_kthStep.ipynb)
-4. PPO - single agents / every step update <br> [PPO_Single_Train.ipynb](PPO_Single_Train.ipynb)
-5. PPO - multi agents / every step update <br> [PPO_Multi_Train.ipynb](PPO_Multi_Train.ipynb)
+4. PPO <br> [PPO_Train.ipynb](PPO_Train.ipynb)
 
 ## Framework
 The code is written in PyTorch and Python 3.
