@@ -60,7 +60,7 @@ for the chosen feed forwad neural networks, plot of rewards per episode (average
 discrete future ideas for improving the agent's performance.
 
 ## Further Reading
-[Python Style Guide](https://google.github.io/styleguide/pyguide.html)
-[DDPG - Lecture](https://youtu.be/_pbd6TCjmaw)
-[Trust Region Policy Optimization (TRPO) and Proximal Policy Optimization (PPO)](https://medium.com/@sanketgujar95/trust-region-policy-optimization-trpo-and-proximal-policy-optimization-ppo-e6e7075f39ed)
-[Paper: Review - Reinforcement Learning, Fast and Slow](https://www.sciencedirect.com/science/article/pii/S1364661319300610)
+[Python Style Guide](https://google.github.io/styleguide/pyguide.html)<br>
+[DDPG - Lecture](https://youtu.be/_pbd6TCjmaw)<br>
+[Trust Region Policy Optimization (TRPO) and Proximal Policy Optimization (PPO)](https://medium.com/@sanketgujar95/trust-region-policy-optimization-trpo-and-proximal-policy-optimization-ppo-e6e7075f39ed)<br>
+[Paper: Review - Reinforcement Learning, Fast and Slow](https://www.sciencedirect.com/science/article/pii/S1364661319300610)<br>
