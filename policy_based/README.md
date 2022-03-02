@@ -58,3 +58,9 @@ DDPG method - multi agents/every step update: [critic weights](DDPG_checkpoint_c
 The [report](Report.md) providing a description of the implementation, more specifically the learning algorithm, along with the chosen hyperparameters and the model architectures 
 for the chosen feed forwad neural networks, plot of rewards per episode (average reward (over 100 episodes over all 20 agents) >= +30), the number of episodes needed to solve the environment and 
 discrete future ideas for improving the agent's performance.
+
+## Further Reading
+[Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+[DDPG - Lecture](https://youtu.be/_pbd6TCjmaw)
+[Trust Region Policy Optimization (TRPO) and Proximal Policy Optimization (PPO)](https://medium.com/@sanketgujar95/trust-region-policy-optimization-trpo-and-proximal-policy-optimization-ppo-e6e7075f39ed)
+[Paper: Review - Reinforcement Learning, Fast and Slow](https://www.sciencedirect.com/science/article/pii/S1364661319300610)
