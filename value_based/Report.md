@@ -28,6 +28,7 @@ Three different approaches are tested and compared:
 1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner.ipynb) <br> Motivated by the idea that reducing turning might help to find a suitable Q-approx faster.
 2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb) <br> Motivated by the idea that reducing turning and omiiting backward movement might help to find a suitable Q-approx faster (compare [speed running - computer game](https://www.youtube.com/watch?v=CyhI8Rghaw8).
 3. Normal <br> [NormalRun.ipynb](NormalRun.ipynb) <br> Let's see how long it take to learn with all 4 actions available to the robot. In this implementation the state space was scaled, such that the last two state features are within [-1:1] (all other features remain unscaled).
+4. Normal Rev 1.<br> [NormalRun_rev1.ipynb](NormalRun_rev1.ipynb) <br> like normal run, but bugfixed (action selection).
 
 Functional, well-documented, and organized code for training the agent is provided for the 3 different implementations via Jupiter notebooks.
    
@@ -35,6 +36,7 @@ Functional, well-documented, and organized code for training the agent is provid
 1. Speedrunner -> 782 episodes needed <br> <img src="./images/Solution SpeedRunner1.JPG" width="40%">
 2. Speedrunner2 -> 1001 episodes needed <br> <img src="./images/Solution SpeedRunner2_seed43.JPG" width="40%">
 3. Normal -> 968 episodes needed <br> <img src="./images/Solution Normal_Scaled.jpg " width="40%">
+3. Normal Rev 1. -> ~600 episodes needed <br> <img src="./images/Solution_Normal_Scaled_rev1.JPG " width="45%">
 
 ## Ideas for Future Work
 To further improving the agent's performance: 
