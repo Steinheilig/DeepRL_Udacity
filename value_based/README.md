@@ -12,7 +12,7 @@ At each time step, it can take a action out of:
 - `1` - walk backward
 - `2` - turn left
 - `3` - turn right<br>
-- 
+
 The state space has `37` dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction. 
 The continous values of the state space are in the range [0..1] for all except the last two.
 
@@ -25,6 +25,10 @@ Check out the [Udacity Git](https://github.com/udacity/Value-based-methods) for 
     pip install .
 
 You might encounter the problem that PyTorch version 0.4.0 is not available. Edit the file requirements.txt and just install the most recent version (which worked fine for me). 
+
+It is possible to run the Unity-Ml enviornment in headless mode (without grafics), which increase training performance. 
+
+    env = UnityEnvironment(file_name='C:\where_everWindows_x86_64_whotever_agent\Whatever.exe',no_graphics=True)
 
 ## Instructions
 To run the code in the repository start with either of the different training codes provided. It will import [model_MLP.py](model_MLP.py) (neural network definition to approximate the action-value function Q(S,A)) and [dqn_agent.py](dqn_agent.py) (the Deep-Q Network implementation code).
