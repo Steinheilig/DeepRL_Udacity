@@ -31,9 +31,10 @@ To run the code in the repository start with either of the different training co
 
 ## Training Code 
 Functional, well-documented, and organized code for training the agent is provided for different implementations via Jupiter notebooks:
-1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner.ipynb)
+1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner1.ipynb)
 2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb)
 3. Normal <br> [NormalRun.ipynb](NormalRun.ipynb)
+4. Normal - Rev 1. <br> [NormalRun_rev1.ipynb](NormalRun_rev1.ipynb)
 
 ## Framework
 The code is written in PyTorch and Python 3.
@@ -43,6 +44,7 @@ The submission includes the saved model weights of the successful agents:
 1. Speedrunner (reduced action space: Only forward, backward & left) <br> [checkpoint_Speedrunner1_DONE.pth](checkpoint_Speedrunner1_DONE.pth)
 2. Speedrunner2 (reduced action space: Only forward & left) <br> [checkpoint_Speedrunner2_DONE.pth](checkpoint_Speedrunner2_DONE.pth)
 3. Normal <br> [checkpoint_Normal_scaled.pth](checkpoint_Normal_scaled.pth)
+4. Normal - Rev 1. <br> [checkpoint_Normal_scaled_rev1.pth](checkpoint_Normal_scaled_rev1.pth)
 
 ## Report
 The [report](Report.md) providing a description of the implementation, more specifically the learning algorithm, along with the chosen hyperparameters and the model architectures 
