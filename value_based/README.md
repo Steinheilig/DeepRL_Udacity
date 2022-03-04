@@ -36,6 +36,9 @@ Functional, well-documented, and organized code for training the agent is provid
 3. Normal <br> [NormalRun.ipynb](NormalRun.ipynb)
 4. Normal - Rev 1. <br> [NormalRun_rev1.ipynb](NormalRun_rev1.ipynb)
 
+## Visualize Agent Performance after Training
+Use [ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb) to observe the agent (normal runs) after training and reaching target performance.
+
 ## Framework
 The code is written in PyTorch and Python 3.
 
