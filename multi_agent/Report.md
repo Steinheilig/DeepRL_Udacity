@@ -21,7 +21,7 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 --- | --- | ---| ---|
 |1|0.12|20000|batchsize: 128, tau=0.1, discount_factor=0.9999|
 |2|0.05|25881|batchsize: 2*128, tau=0.01, discount_factor=0.999|
-|3|data12|data2|batchsize: 2*128, tau=0.1, discount_factor=0.999|
+|3|0.15|15841	|batchsize: 2*128, tau=0.1, discount_factor=0.999|
 |4|XX|XX|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4|
 
 
