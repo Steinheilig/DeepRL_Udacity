@@ -14,6 +14,16 @@ The continous values of the state space are in the range [-30,30] and are normal
 The matrix (int and float values) is stored in [state_scale.npz](state_scale.npz)
 
 ## First Attempt - MADDPG (full environment)
+Training in the two-agent-24-states environment with the MADDPG algorithm. The network weights are updated every second time step, two times for each agent (and batchsize many samples from the replay buffer). Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given below.  
+
+Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
+| Run | Max. Score | Max. Episodes| Params|
+--- | --- | ---| ---|
+|1|0.12|20000|batchsize: 128, tau=0.1, discount_factor=0.9999|
+|2|0.05|25881|batchsize: 2*128, tau=0.01, discount_factor=0.999|
+|3|data12|data2|batchsize: 2*128, tau=0.1, discount_factor=0.999
+
+
 **HERE**
 
 ## Second Attempt - MADDPG (reduced environment)
@@ -52,6 +62,7 @@ I use the Deep Deterministic Policy Gradient (DDPG) in continous action space wi
 The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
  
+**HERE**
  The two networks (well in fact 4 networks: target and local network for each) are implemented in [Single/EveryStep](DDPG_Single_model_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_model_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_model_kthStep.py), respectively. They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the [LeakyReLU](https://paperswithcode.com/method/leaky-relu) activation functions are replaced by simple ReLU non-linearities.<br> 
 The DDPG agent code ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_agent_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_agent_kthStep.py), respectivly) augments the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
  The following adjustments are made:<br>
@@ -65,7 +76,7 @@ The DDPG agent code ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multip
 Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the course.<br>
 All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
 - n_episodes (int): maximum number of training episodes = 2000
-- max_t (int): maximum number of timesteps per episode  = **1000-1**
+- max_t (int): maximum number of timesteps per episode  = not applicable - run until agents fail ;)
 - replay buffer size = int(1e6), BUFFER_SIZE
 - minibatch size = **64**, BATCH_SIZE 
 - discount factor, gamma = 0.99, GAMMA
@@ -73,14 +84,14 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 - learning rate (actor) = 1e-4 (Adam optimizer), LR_ACTOR
 - learning rate (critic) = **1e-3** (Adam optimizer), LR_CRITIC
 - L2 weight decay (critic) = **0**, WEIGHT_DECAY
-- how often to update the networks = 1, multiple_update_steps (only for 1st and 2nd approach)
-- update every kth step= 30 , UPDATE_EVERY_NTH_STEP (only for 3rd approach)
-- update how many epochs = 20 , UPDATE_MANY_EPOCHS  (only for 3rd approach)
+- update every kth step= 30 , UPDATE_EVERY_NTH_STEP 
+- update how many epochs = 20 , UPDATE_MANY_EPOCHS  
 
 ## Learning Algorithm - MADDPG
 **here**
  
 ## Different Implementations
+**HERE**
 Five different approaches are tested and compared:
 1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
 2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
@@ -96,6 +107,7 @@ All other attempts did not reach the goal in the given training time (see above)
 The agent can be tested using [ShowAgentPerformance.ipynb](ShowAgentPerformance .ipynb)
  
 ## Ideas for Future Work
+**HERE**
 To further improving the agent's performance: 
 - move to more stable GPU environment, with multiple GPUs to train in paralle with different hyperparameters and networks
 - Setup Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server)
