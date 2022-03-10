@@ -14,14 +14,16 @@ The continous values of the state space are in the range [-30,30] and are normal
 The matrix (int and float values) is stored in [state_scale.npz](state_scale.npz)
 
 ## First Attempt - MADDPG (full environment)
-Training in the two-agent-24-states environment with the MADDPG algorithm. The network weights are updated every second time step, two times for each agent (and batchsize many samples from the replay buffer). Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given below.  
+Training in the two-agent-24-states environment with the MADDPG algorithm. The network weights are updated every second time step, two times for each agent (and batchsize many samples from the replay buffer). My python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given below.  
 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
 |1|0.12|20000|batchsize: 128, tau=0.1, discount_factor=0.9999|
 |2|0.05|25881|batchsize: 2*128, tau=0.01, discount_factor=0.999|
-|3|data12|data2|batchsize: 2*128, tau=0.1, discount_factor=0.999
+|3|data12|data2|batchsize: 2*128, tau=0.1, discount_factor=0.999|
+|4|XX|XX|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4|
+
 
 
 **HERE**
@@ -58,24 +60,25 @@ I use the Deep Deterministic Policy Gradient (DDPG) in continous action space wi
  
  While the network uses and actor and a critic it is not directly an actor-critic (AC) approach and works more like an approximated DQN. The actor tries to predict the best action in a given state, the critic maximizes the Q values of the next state and is not used as a learned baseline (as in traditional AC approaches).<br>
  
- The two networks are depicted above. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 4 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture above). <br>
-The inpute space is 33 dimensional and each feature scaled to [-1,1]. The action space is 4 dimensional and continous, controlling the torque to the two joints of the robot arm.<br>
+ The two networks are depicted below. The optimal deterministic policy is approximated by the actor using a single fully connected (fc) hidden layer of 256. After the fc layer a ReLU activation function is applied and than its output is fc to the 2 dimensional output units. A tanh function is applied here to ensure that the action values are in the range [-1,1]. The action value function Q is approximated with 3 fc layers of 256, 256 and 128 units. Each followed by a ReLU activation function. The output of first layer is augmented with the action values determined by the policy (indicated by the red arrow in the picture below). <br>
+The inpute space is 24 dimensional, the local observation of the agent, and each feature scaled to [-1,1]. The action space is 2 dimensional and continous, controlling the agents movements along the x-axis and jumping (y-axis).<br>
 <img src="./images/DDPG_struc.JPG" width="60%"><br>
  
 **HERE**
+
  The two networks (well in fact 4 networks: target and local network for each) are implemented in [Single/EveryStep](DDPG_Single_model_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_model_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_model_kthStep.py), respectively. They are augmented versions of the [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity, namly the [LeakyReLU](https://paperswithcode.com/method/leaky-relu) activation functions are replaced by simple ReLU non-linearities.<br> 
 The DDPG agent code ([Single/EveryStep](DDPG_Single_agent_EveryStep.py), [Multiple/EveryStep](DDPG_Multi_agent_EveryStep.py) and [Multiple/EverykthStep/nEpochs](DDPG_Multi_agent_kthStep.py), respectivly) augments the provided [base code](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal) from Udacity.<br>
  The following adjustments are made:<br>
-- interaction with single or multi-agent Unity-ML environment
+- interaction with Unity-ML environment
 - preprosessing of state values (scaling)
 - augmenting the provided classes to allow hyperparameter and NN architecture changes on the fly, e.g. noise on/off
 - a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ - alternatively (only 3rd approach) UPDATE_EVERY_NTH_STEP  and UPDATE_MANY_EPOCHS are introduced to controll k epoch updates after n steps
 - gradients of the critic are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), 1) 
-- gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), 1) (only for 2nd approach) 
+- gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), 1) 
  
 Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the course.<br>
 All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
-- n_episodes (int): maximum number of training episodes = 2000
+- n_episodes (int): maximum number of training episodes = **10000**
 - max_t (int): maximum number of timesteps per episode  = not applicable - run until agents fail ;)
 - replay buffer size = int(1e6), BUFFER_SIZE
 - minibatch size = **64**, BATCH_SIZE 
@@ -88,7 +91,33 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 - update how many epochs = 20 , UPDATE_MANY_EPOCHS  
 
 ## Learning Algorithm - MADDPG
-**here**
+Multi-Agent Deep Deterministic Policy Gradient (MADDPG) is an extension of the above described DDPG algorithm for collaborative and/or competitive multi-agent environments introduced by [Lowe et al. (2017)](https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf). The basic idea is that while the actor only uses information available to the agent locally, the critic can use globally available information ("god-mode"), like all agents' observations, all agents' actions and potentially information hidden from the agents. The picture below shows the implementation for the two tennis playing agents. Each agent hast 24 locally available observation values and the actor learns the agent's best action given the local observation. To train the actor, a critic is trained with addtional global information; Here, the observation and action of the second agent. Hence, the input to the critic is 2*(24 + 2) = 52 dimensional (two times observations and two times actions, one of which is given by the actor). 
+<img src="./images/DDPG_struc.JPG" width="60%"><br>
+
+ The Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). 
+ 
+ The following adjustments are made:<br>
+- interaction with Unity-ML environment
+- preprosessing of state values (scaling)
+- reducing state-space (by removing stacked time information) (only 2nd attempt)
+- augmenting the provided classes to allow hyperparameter and NN architecture changes on the fly, e.g. noise on/off
+- a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ - alternatively (only 3rd approach) UPDATE_EVERY_NTH_STEP  and UPDATE_MANY_EPOCHS are introduced to controll k epoch updates after n steps
+- gradients of the critic are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), .1) 
+- gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), .1) 
+ 
+Implementations of fixed targets and experience replay buffer are unchanged compared to the code provided during the course.<br>
+All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
+- n_episodes (int): maximum number of training episodes = **30000**
+- max_t (int): maximum number of timesteps per episode  = not applicable - run until agents fail ;)
+- replay buffer size = int(1e6), BUFFER_SIZE
+- minibatch size = **128**, **256**, BATCH_SIZE 
+- discount factor, gamma = **0.999**,**0.9999** GAMMA
+- for soft update of target parameters, tau = **0.1**, **0.01**, TAU
+- learning rate (actor) = 1e-4, **1e-5** (Adam optimizer), LR_ACTOR
+- learning rate (critic) = **1e-4**, **1e-5** (Adam optimizer), LR_CRITIC
+- L2 weight decay (critic) = **1.e-9**, WEIGHT_DECAY
+- update every kth step= 30 , UPDATE_EVERY_NTH_STEP 
+- update how many epochs = 20 , UPDATE_MANY_EPOCHS  
  
 ## Different Implementations
 **HERE**
