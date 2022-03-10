@@ -90,9 +90,10 @@ Five different approaches are tested and compared:
 Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
    
 ## Plot of Rewards
-2nd attempt needed 274 episodes <br> <img src="./images/Screen_DDPG_Multi_EveryStep_274.JPG" width="80%"> <br>
+3rd attempt needed 2384 episodes <br> 
+<img src="./images/Screen_DDPG_run1.JPG" width="80%"> <br>
 All other attempts did not reach the goal in the given training time (see above).<br>
-The agent can be tested using [ShowAgentPerformance .ipynb](ShowAgentPerformance .ipynb)
+The agent can be tested using [ShowAgentPerformance.ipynb](ShowAgentPerformance .ipynb)
  
 ## Ideas for Future Work
 To further improving the agent's performance: 
