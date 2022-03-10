@@ -92,7 +92,7 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 
 ## Learning Algorithm - MADDPG
 Multi-Agent Deep Deterministic Policy Gradient (MADDPG) is an extension of the above described DDPG algorithm for collaborative and/or competitive multi-agent environments introduced by [Lowe et al. (2017)](https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf). The basic idea is that while the actor only uses information available to the agent locally, the critic can use globally available information ("god-mode"), like all agents' observations, all agents' actions and potentially information hidden from the agents. The picture below shows the implementation for the two tennis playing agents. Each agent hast 24 locally available observation values and the actor learns the agent's best action given the local observation. To train the actor, a critic is trained with addtional global information; Here, the observation and action of the second agent. Hence, the input to the critic is 2*(24 + 2) = 52 dimensional (two times observations and two times actions, one of which is given by the actor). 
-<img src="./images/DDPG_struc.JPG" width="60%"><br>
+<img src="./images/MADDPG_struc.JPG" width="60%"><br>
 
  The Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). 
  
