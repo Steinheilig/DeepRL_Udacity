@@ -19,11 +19,11 @@ Training in the two-agent-24-local-observation-states environment with the MADDP
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
-|1|0.12|20000|batchsize: 128, tau=0.1, discount_factor=0.9999|
-|2|0.05|25881|batchsize: 2*128, tau=0.01, discount_factor=0.999|
-|3|0.15|15841	|batchsize: 2*128, tau=0.1, discount_factor=0.999|
-|4|0.26|10000|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4|
-|5|XX|XX|batchsize: 2*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =10, LR_ACTOR 5e-3, LR_CRITIC = 5e-3, noise_reduction=0.9, L2 weight decay (critic) = 0|
+|1|0.12|20000|batchsize: 128, tau=0.1, discount_factor=0.9999, clipping=0.1, UPDATE_EVERY_NTH_STEP= 2, UPDATE_MANY_EPOCHS = 2, LR_ACTOR 1e-5, LR_CRITIC = 1e-5, noise_reduction=0.999, L2 weight decay (critic) = 1e-9|
+|2|0.05|25881|batchsize: 2*128, tau=0.01, discount_factor=0.999, clipping=0.1, UPDATE_EVERY_NTH_STEP= 2, UPDATE_MANY_EPOCHS = 2, LR_ACTOR 1e-5, LR_CRITIC = 1e-5, noise_reduction=0.999, L2 weight decay (critic) = 1e-9|
+|3|0.15|15841	|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=0.1, UPDATE_EVERY_NTH_STEP= 2, UPDATE_MANY_EPOCHS = 2, LR_ACTOR 1e-5, LR_CRITIC = 1e-5, noise_reduction=0.999, L2 weight decay (critic) = 1e-9|
+|4|0.37|11000|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4|
+|5|XX|XX|batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =10, LR_ACTOR 5e-3, LR_CRITIC = 5e-3, noise_reduction=0.9, L2 weight decay (critic) = 0|
 
 
 
