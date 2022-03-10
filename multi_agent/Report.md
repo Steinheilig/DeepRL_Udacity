@@ -14,7 +14,7 @@ The continous values of the state space are in the range [-30,30] and are normal
 The matrix (int and float values) is stored in [state_scale.npz](state_scale.npz)
 
 ## First Attempt - MADDPG (full environment)
-Training in the two-agent-24-states environment with the MADDPG algorithm. The network weights are updated every second time step, two times for each agent (and batchsize many samples from the replay buffer). My python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given below.  
+Training in the two-agent-24-local-observation-states environment with the MADDPG algorithm. The network weights are updated every second time step, two times for each agent (and batchsize many samples from the replay buffer). My python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given below.  
 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
@@ -41,7 +41,7 @@ I stopped this approach and searched the [Udacity knowledge base](https://knowle
 
 
 ## Third Attempt - DDPG (full environment)
-Training in the two-agent-24-states environment with the DDPG algorithm - updating the network weights at every nth step for k epochs. DDPG implementation an hyperparameter are unchanged compared to my [2nd course assignment / 3rd attempt](https://github.com/Steinheilig/DeepRL_Udacity/blob/main/policy_based/Report.md): Neural network architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal)).<br>
+Training in the two-agent-24-local-observation-states environment with the DDPG algorithm - updating the network weights at every nth step for k epochs. DDPG implementation an hyperparameter are unchanged compared to my [2nd course assignment / 3rd attempt](https://github.com/Steinheilig/DeepRL_Udacity/blob/main/policy_based/Report.md): Neural network architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal)).<br>
 
 <img src="./images/Screen_DDPG_run1.JPG" width="80%"> <br>
 
