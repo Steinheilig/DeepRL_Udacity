@@ -23,6 +23,7 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |2|0.05|25881|batchsize: 2*128, tau=0.01, discount_factor=0.999|
 |3|0.15|15841	|batchsize: 2*128, tau=0.1, discount_factor=0.999|
 |4|XX|XX|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4|
+|4|XX|XX|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS =10, LR_ACTOR 1e-3, LR_CRITIC = 1e-4, noise_reduction=0.9, L2 weight decay (critic) = 0|
 
 
 
@@ -109,15 +110,17 @@ Implementations of fixed targets and experience replay buffer are unchanged comp
 All learning hyperparameters are comparable or only slightly adjusted (highlighted by bold face) compared to the solution provided during the course, i.e. <br>
 - n_episodes (int): maximum number of training episodes = **30000**
 - max_t (int): maximum number of timesteps per episode  = not applicable - run until agents fail ;)
-- replay buffer size = int(1e6), BUFFER_SIZE
+- replay buffer size = 1e6, BUFFER_SIZE
 - minibatch size = **128**, **256**, BATCH_SIZE 
 - discount factor, gamma = **0.999**,**0.9999** GAMMA
 - for soft update of target parameters, tau = **0.1**, **0.01**, TAU
 - learning rate (actor) = 1e-4, **1e-5** (Adam optimizer), LR_ACTOR
 - learning rate (critic) = **1e-4**, **1e-5** (Adam optimizer), LR_CRITIC
-- L2 weight decay (critic) = **1.e-9**, WEIGHT_DECAY
+- L2 weight decay (critic) = **0**, **1.e-9**, WEIGHT_DECAY
 - update every kth step= 30 , UPDATE_EVERY_NTH_STEP 
 - update how many epochs = 20 , UPDATE_MANY_EPOCHS  
+- OU Noise = **4** 
+- OU Noise reduction = **0.999**, **0.9**
  
 ## Different Implementations
 **HERE**
