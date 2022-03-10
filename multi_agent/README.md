@@ -6,11 +6,11 @@ Goal of the project is to train two agents to play a cooperative tennis match (g
 In the simulated environment, two agents that can move in a two dimensional plane (towards/away from the net and up/down movement).<br>
 <!-- <img src="./images/Env.jpg width="20%">  -->                                     
 <!--  ![Environment Screen Shot](./images/Env.jpg) -->
-<img src="./images/Env.jpg" width="25%"> 
+<img src="./images/Env.jpg" width="50%"> 
 
 At each time step, the agents perform continuous actions \vec(a)=[a1,a2] with a_i in [-1,1], corresponding to movement toward (or away from) the net, and jumping. 
 
-The continous state space has `24` dimensions and contains position and velocity of the ball and agents (rackets). 8 environment variables are given at every point in time, which are then [stacked](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Design-Agents.md#stacking) for 3 time points.
+The continous state space has `24` dimensions and contains position and velocity of the ball and the observing agent (racket). 8 environment variables are given at every point in time, which are then [stacked](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Design-Agents.md#stacking) for 3 time points.
 The continous values of the state space are in the range [-30,30] (and should be normalized to [-1,1] before training the agents).
 
 ## Getting Started
