@@ -136,12 +136,10 @@ All other attempts did not reach the goal in the given training time (see above)
 The agent can be tested using [ShowAgentPerformance.ipynb](ShowAgentPerformance .ipynb)
  
 ## Ideas for Future Work
-**HERE**
 To further improving the agent's performance: 
-- move to more stable GPU environment, with multiple GPUs to train in paralle with different hyperparameters and networks
-- Setup Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server)
 - tune hyperparameters
 - optimze network architectures
+- pretrain single DDPG agents first, then use the pretrained actor network in a MADDPG approach
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
 - DDPG: Ornsetein-Uhlenbeck noise was added to the action space. It has been [shown](https://openai.com/blog/better-exploration-with-parameter-noise/) that adding noise to the parameters of the neural network policy can improve performance. 
