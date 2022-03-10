@@ -28,7 +28,7 @@ You will install/add a new Python environment called drlnd to your Python instal
 
 3) It is possible to work with the Unity ML env. in [headless mode](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Executable.md#training-on-headless-server). In fact, it's quite easy and speeds up training significantly: 
 
-         env = UnityEnvironment(file_name='C:\where_ever\Reacher_Windows_x86_64_multiple_agents\Reacher.exe',no_graphics=True)
+         env = UnityEnvironment(file_name='C:\where_ever\Tennis_Windows_x86_64\Tennis.exe',no_graphics=True)
 
 ## Instructions
 To run the code in the repository start with either of the different training codes provided. **HERE**
