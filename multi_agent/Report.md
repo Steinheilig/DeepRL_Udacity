@@ -1,5 +1,6 @@
 # Report
-The report provides a description of the implementation to solve the multi-agent tennis project with DeepRL means.<br>
+The report provides a description of the implementation to solve the multi-agent tennis project with DeepRL means.<br> 
+
 <img src="./images/Env.jpg" width="50%"> 
 
 ## Preprocessing
@@ -147,4 +148,4 @@ To further improving the agent's performance:
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
 - DDPG: Ornsetein-Uhlenbeck noise was added to the action space. It has been [shown](https://openai.com/blog/better-exploration-with-parameter-noise/) that adding noise to the parameters of the neural network policy can improve performance. 
-- try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
+- try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
