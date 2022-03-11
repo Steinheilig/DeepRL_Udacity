@@ -23,11 +23,10 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |2|0.05|25881|batchsize: 2*128, tau=0.01, discount_factor=0.999, clipping=0.1, UPDATE_EVERY_NTH_STEP= 2, UPDATE_MANY_EPOCHS = 2, LR_ACTOR 1e-5, LR_CRITIC = 1e-5, noise_reduction=0.999, L2 weight decay (critic) = 1e-9|
 |3|0.15|15841	|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=0.1, UPDATE_EVERY_NTH_STEP= 2, UPDATE_MANY_EPOCHS = 2, LR_ACTOR 1e-5, LR_CRITIC = 1e-5, noise_reduction=0.999, L2 weight decay (critic) = 1e-9|
 |4|**0.54**|10859|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4|
-|5|XX|XX|batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 0|
+|5|**2.50**|6239|batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 0|
 
-
-
-**HERE**
+<img src="./images/Screen_MADDPG_run5.JPG" width="90%"> <br>
+The assignment was **solved after 5037 episodes**, at which time point on average (over the last 100 episodes of the max reward value of the two agents) a score of 0.5 is achived!
 
 ## Second Attempt - MADDPG (reduced environment)
 **HERE**
@@ -100,9 +99,10 @@ Multi-Agent Deep Deterministic Policy Gradient (MADDPG) is an extension of the a
  The following adjustments are made:<br>
 - interaction with Unity-ML environment
 - preprosessing of state values (scaling)
+- add noise rest to ddpg model and reset noise generator after each episode
 - reducing state-space (by removing stacked time information) (only 2nd attempt)
 - augmenting the provided classes to allow hyperparameter and NN architecture changes on the fly, e.g. noise on/off
-- a new parameter multiple_update_steps to update multiple times per agent.step() if positive and to only update with \epsilon=1/abs(multiple_update_steps) if negativ - alternatively (only 3rd approach) UPDATE_EVERY_NTH_STEP  and UPDATE_MANY_EPOCHS are introduced to controll k epoch updates after n steps
+- a new parameters UPDATE_EVERY_NTH_STEP and UPDATE_MANY_EPOCHS - introduced to control k epoch updates after n steps
 - gradients of the critic are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.critic_local.parameters(), .1) 
 - gradients of the actor are clipped to prevent weight divergence torch.nn.utils.clip_grad_norm(self.actor_local.parameters(), .1) 
  
