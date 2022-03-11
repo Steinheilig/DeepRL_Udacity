@@ -25,7 +25,7 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |4|**0.54**|10859|batchsize: 2*128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4|
 |5|**2.50**|6239|batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9|
 
-<img src="./images/Screen_MADDPG_run5.JPG" width="90%"> <br>
+<img src="./images/Screen_MADDPG_run5.JPG" width="80%"> <br>
 The assignment was **solved after 5037 episodes**, at which time point on average (over the last 100 episodes of the max reward value of the two agents) a score of 0.5 is achived!
 
 ## Second Attempt - MADDPG (reduced environment)
@@ -35,17 +35,12 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
 |1|0.15|8000| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, code bug (used t-3 env obs. :o for training) |
-|2|XX|XX| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9|
+|2|**0.84**|6000| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9|
+|3|0.07|9400| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, NN (actor): 128-32, NN (critic): 128-16 |
+|4|**1.64**|9800| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, NN (actor): 256-128, NN (critic): 256-128 |
 
-
-
-I stopped this approach and searched the [Udacity knowledge base](https://knowledge.udacity.com/) for some support to speed up project progress... <br>
- 
-> It is true that a single agent's environment may be difficult to train, <br> so you may need several thousand episodes to draw robust conclusions. <br>
-> This is why I am going to recommend the following actions:
->   - Try the second env (with 20 robotics arms) [..] <br>
->   - Update every X (e.g., 30) time steps the NNs. <br>
-> https://knowledge.udacity.com/questions/772148
+<img src="./images/Screen_MADDPG_reduced_run2.JPG" width="80%"> <br>
+The assignment was **solved after 5745 episodes** (2nd run), at which time point on average (over the last 100 episodes of the max reward value of the two agents) a score of 0.5 is achived!
 
 ## Third Attempt - DDPG (full environment)
 Training in the two-agent-24-local-observation-states environment with the DDPG algorithm - updating the network weights at every nth step for k epochs. DDPG implementation an hyperparameter are unchanged compared to my [2nd course assignment / 3rd attempt](https://github.com/Steinheilig/DeepRL_Udacity/blob/main/policy_based/Report.md): Neural network architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal)).<br>
@@ -140,9 +135,8 @@ Five different approaches are tested and compared:
 Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
    
 ## Plot of Rewards
-3rd attempt needed 2384 episodes <br> 
+3rd attempt (individual DDPG agents) was the fasted and needed 2384 episodes to reach the target performance <br> 
 <img src="./images/Screen_DDPG_run1.JPG" width="80%"> <br>
-All other attempts did not reach the goal in the given training time (see above).<br>
 The agent can be tested using [ShowAgentPerformance.ipynb](ShowAgentPerformance .ipynb)
  
 ## Ideas for Future Work
