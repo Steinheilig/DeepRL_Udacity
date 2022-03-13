@@ -126,24 +126,41 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 - OU Noise reduction = **0.999**, **0.9**
  
 ## Different Implementations
-**HERE**
-Five different approaches are tested and compared:
-1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
-2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
-3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_kthStep.ipynb](DDPG_Multi_Train_kthStep.ipynb)
-4. PPO <br> [PPO_Train.ipynb](PPO_Single_Train.ipynb)
-
 Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
-   
+Three different approaches are tested and compared:
+1. MADDPG  <br> [./MADDPG/MADDPG_Train.ipynb](MADDPG_Train.ipynb)
+2. MADDPG (reduced state space: Only single time frame) <br> [./MADDPG/MADDPD_Train_reduced.ipynb](MADDPD_Train_reduced.ipynb)
+3. DDPG <br> [./DDPG/DDPG_Multi_Train_kthStep.ipynb.ipynb](DDPG_Multi_Train_kthStep.ipynb.ipynb)
+
+### Saved Model Weights
+The submission includes the saved model weights of the successful agents:
+1. MADDPG  <br> [./checkpoints/Run5_reduced_episode-6240.pt](Run5_reduced_episode-6240.pt)
+2. MADDPG (reduced state space: Only single time frame) <br> None
+3. DDPG / Run 1:<br>
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run1.pth)
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run1.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run1.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run1.pth)
+4. DDPG / Run 3:<br>
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run3.pth)
+
+### Show Agents Performance Code 
+1. MADDPG  <br> [./MADDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
+2. MADDPG (reduced state space: Only single time frame) <br> None
+3. DDPG <br> [./DDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
+
 ## Plot of Rewards
 3rd attempt (individual DDPG agents) was the fasted and needed 2384 episodes to reach the target performance <br> 
 <img src="./images/Screen_DDPG_run1.JPG" width="80%"> <br>
-The agent can be tested using [ShowAgentPerformance.ipynb](ShowAgentPerformance .ipynb)
+The agent can be tested using [./DDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb).
  
 ## Ideas for Future Work
 To further improving the agent's performance: 
 - tune hyperparameters
-- optimze network architectures
+- optimize network architectures
 - pretrain single DDPG agents first, then use the pretrained actor network in a MADDPG approach
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
