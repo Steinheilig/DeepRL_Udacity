@@ -31,24 +31,37 @@ You will install/add a new Python environment called drlnd to your Python instal
          env = UnityEnvironment(file_name='C:\where_ever\Tennis_Windows_x86_64\Tennis.exe',no_graphics=True)
 
 ## Instructions
-To run the code in the repository start with either of the different training codes provided. **HERE**
-
-## Training Code 
-Functional, well-documented, and organized code for training the agent is provided for different implementations via Jupiter notebooks:
-**HERE**
-1. Speedrunner (reduced action space: Only forward, backward & left) <br> [Speedrunner1.ipynb](Speedrunner.ipynb)
-2. Speedrunner2 (reduced action space: Only forward & left) <br> [Speedrunner2.ipynb](Speedrunner2.ipynb)
-3. Normal <br> [NormalRun.ipynb](NormalRun.ipynb)
+Tow subdirectories for either MADDPG or DDPG are provided in this repository. 
+To run the training code in the repository start with either of the different training codes provided below. To load the weights and observe the agents performance use one of the ShowAgentPerformance scripts below (you might have to change the checkpoint loding directory..). 
 
 ## Framework
 The code is written in PyTorch and Python 3.
 
+## Training Code 
+Functional, well-documented, and organized code for training the agent is provided for different implementations via Jupiter notebooks:
+1. MADDPG  <br> [./MADDPG/MADDPG_Train.ipynb](MADDPG_Train.ipynb)
+2. MADDPG (reduced state space: Only single time frame) <br> [./MADDPG/MADDPD_Train_reduced.ipynb](MADDPD_Train_reduced.ipynb)
+3. DDPG <br> [./DDPG/DDPG_Multi_Train_kthStep.ipynb.ipynb](DDPG_Multi_Train_kthStep.ipynb.ipynb)
+
 ## Saved Model Weights
 The submission includes the saved model weights of the successful agents:
-**HERE**
-1. Speedrunner (reduced action space: Only forward, backward & left) <br> [checkpoint_Speedrunner1_DONE.pth](checkpoint_Speedrunner1_DONE.pth)
-2. Speedrunner2 (reduced action space: Only forward & left) <br> [checkpoint_Speedrunner2_DONE.pth](checkpoint_Speedrunner2_DONE.pth)
-3. Normal <br> [checkpoint_Normal_scaled.pth](checkpoint_Normal_scaled.pth)
+1. MADDPG  <br> [./checkpoints/Run5_reduced_episode-6240.pt](Run5_reduced_episode-6240.pt)
+2. MADDPG (reduced state space: Only single time frame) <br> None
+3. DDPG / Run 1:<br>
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run1.pth)
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run1.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run1.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run1.pth)
+4. DDPG / Run 3:<br>
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run3.pth)
+
+## Show Agents Performance Code 
+1. MADDPG  <br> [./MADDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
+2. MADDPG (reduced state space: Only single time frame) <br> None
+3. DDPG <br> [./DDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
 
 ## Report
 The [report](Report.md) providing a description of the implementation, more specifically the learning algorithm, along with the chosen hyperparameters and the model architectures 
@@ -56,11 +69,11 @@ for the chosen neural networks, plot of max agents reward per episode (average r
 discrete future ideas for improving the agent's performance.
 
 ## Further Reading 
-Silver et al. (2017) Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm, https://arxiv.org/abs/1712.01815 <br>
-Silver et al. (2017) Mastering the game of Go without human knowledge  https://deepmind.com/blog/article/alphago-zero-starting-scratch <br>
-Lowe et al. (2017) Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf <br>
-OpenAI Five https://openai.com/five/ <br>
-Brener et al. (2019) Dota 2 with Large Scale Deep Reinforcement Learning, https://arxiv.org/abs/1912.06680 <br>
-Schulman et al. (2017) Proximal Policy Optimization Algorithms https://arxiv.org/pdf/1707.06347.pdf <br>
-PyTorch CNN, examples https://medium.com/analytics-vidhya/implementing-cnn-in-pytorch-with-custom-dataset-and-transfer-learning-1864daac14cc , https://www.tutorialspoint.com/pytorch/pytorch_convolutional_neural_network.htm , https://blog.paperspace.com/writing-cnns-from-scratch-in-pytorch/ <br>
+- Silver et al. (2017) Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm, https://arxiv.org/abs/1712.01815 <br>
+- Silver et al. (2017) Mastering the game of Go without human knowledge  https://deepmind.com/blog/article/alphago-zero-starting-scratch <br>
+- Lowe et al. (2017) Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf <br>
+- OpenAI Five https://openai.com/five/ <br>
+- Brener et al. (2019) Dota 2 with Large Scale Deep Reinforcement Learning, https://arxiv.org/abs/1912.06680 <br>
+- Schulman et al. (2017) Proximal Policy Optimization Algorithms https://arxiv.org/pdf/1707.06347.pdf <br>
+- PyTorch CNN, examples https://medium.com/analytics-vidhya/implementing-cnn-in-pytorch-with-custom-dataset-and-transfer-learning-1864daac14cc , https://www.tutorialspoint.com/pytorch/pytorch_convolutional_neural_network.htm , https://blog.paperspace.com/writing-cnns-from-scratch-in-pytorch/ <br>
 
