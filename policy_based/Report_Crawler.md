@@ -20,7 +20,7 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 --- | --- | ---| ---|
 |1|44.14|3201|batchsize: 128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128|
 |2|28.51|243|batchsize: 128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128|
-|3|||batchsize: 128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128, revised state scaling,|
+|3|||batchsize: 128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 1024; -C,1024,512,256|
 
 
 
