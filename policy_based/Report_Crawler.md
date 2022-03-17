@@ -18,9 +18,11 @@ Training in the multi-agent (12) environment with the DDPG algorithm - updating 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
-|1|44.14|3201|batchsize: 128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128|
-|2|28.51|243|batchsize: 128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128|
-|3|||batchsize: 128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 1024; -C,1024,512,256|
+|1|44.14|3201|batchsize: 128, tau=0.001, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128|
+|2|28.51|243|batchsize: 128, tau=0.001, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128|
+|3|27.97|883|batchsize: 128, tau=0.001, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 1024; -C,1024,512,256|
+|4|25.17|701|batchsize: 512, tau=0.01, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 25, LR_ACTOR 5e-5, LR_CRITIC = 5e-5, L2 weight decay (critic) = 0, NN-A 1024; -C,1024,512,256|
+|4|||batchsize: 1024, tau=0.01, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 25, LR_ACTOR 5e-5, LR_CRITIC = 5e-5, L2 weight decay (critic) = 0, NN-A 1024,512,256; -C,1024,512,256|
 
 
 
