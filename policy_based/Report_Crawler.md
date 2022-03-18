@@ -11,7 +11,7 @@ The state values are (optional) scaled by dividing with the elements of the scal
 **Here**<br>
 The matrix (int and float values) is stored in [state_scale_crawler.npz](state_scale_crawler.npz)
 
-## First Attempt - DDPG (multi-agent env. / every nth step update of k epochs)
+## DDPG (multi-agent env. / every nth step update of k epochs)
 Training in the multi-agent (12) environment with the DDPG algorithm - updating the network weights at every nth step for k epochs. 
 
 
@@ -22,7 +22,7 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |2|28.51|243|batchsize: 128, tau=0.001, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 256; -C,256,256,128|
 |3|27.97|883|batchsize: 128, tau=0.001, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 40, LR_ACTOR 1e-4, LR_CRITIC = 1e-3, L2 weight decay (critic) = 0, NN-A 1024; -C,1024,512,256|
 |4|25.17|701|batchsize: 512, tau=0.01, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 25, LR_ACTOR 5e-5, LR_CRITIC = 5e-5, L2 weight decay (critic) = 0, NN-A 1024; -C,1024,512,256|
-|4|||batchsize: 1024, tau=0.01, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 25, LR_ACTOR 5e-5, LR_CRITIC = 5e-5, L2 weight decay (critic) = 0, NN-A 1024,512,256; -C,1024,512,256|
+|5|16.96|277|batchsize: 1024, tau=0.01, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 25, LR_ACTOR 5e-5, LR_CRITIC = 5e-5, L2 weight decay (critic) = 0, NN-A 1024,512,256; -C,1024,512,256|
 
 
 
@@ -62,21 +62,9 @@ All learning hyperparameters are comparable or only slightly adjusted (highlight
 - update every kth step= 30 , UPDATE_EVERY_NTH_STEP (only for 3rd approach)
 - update how many epochs = 20 , UPDATE_MANY_EPOCHS  (only for 3rd approach)
 
-
-**HERE**
-
- 
-## Different Implementations
-Five different approaches are tested and compared:
-1. DDPG - single agents / every step update <br> [DDPG_Single_Train_EveryStep.ipynb](DDPG_Single_Train_EveryStep.ipynb)
-2. DDPG - multi agents / every step update <br> [DDPG_Multi_Train_EveryStep.ipynb](DDPG_Multi_Train_EveryStep.ipynb)
-3. DDPG - multi agents / every nth step update of k epochs <br> [DDPG_Multi_Train_kthStep.ipynb](DDPG_Multi_Train_kthStep.ipynb)
-4. PPO <br> [PPO_Train.ipynb](PPO_Single_Train.ipynb)
-
-Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
-   
+  
 ## Plot of Rewards
 2nd attempt needed 274 episodes <br> <img src="./images/Screen_DDPG_Multi_EveryStep_274.JPG" width="80%"> <br>
 All other attempts did not reach the goal in the given training time (see above).<br>
-The agent can be tested using [ShowAgentPerformance .ipynb](ShowAgentPerformance .ipynb)
+The agent can be tested using [ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
  
