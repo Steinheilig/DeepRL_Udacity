@@ -8,7 +8,12 @@ A creature has 4 arms and 4 forearms to control. The observation space consists 
 20 continuous actions, corresponding to target rotations for joints, are available to the agent. 
 Most of the state features are not normalized. In fact, some feature values are in [-20,20] while others are in [-1,1] which can significantly decrease NN training performance. <br>
 The state values are (optional) scaled by dividing with the elements of the scaling matrix:<br>
-**Here**<br>
+[ 1  1  1  8  2  1  1  1  1  1  1  8 13  8 17  9 16  1 13 16 10 18 16 17
+  1  1  1  1  1  1  1  1 22 27 22 28 20 26  2  2  2  1  1  1  1  1 10 14
+  9 24 12 16  1  1  1  1  1  1  1  1 24 23 24 28 18 29  2  2  2  1  1  1
+  1  1 11 15 13 17 14 16  1  1  1  1  1  1  1  1 23 26 25 28 26 29  2  2
+  2  1  1  1  1  1 10 16  9 17 17 18  1  1  1  1  1  1  1  1 25 31 22 28
+ 20 29  2  2  2  1  1  1  1]<br>
 The matrix (int and float values) is stored in [state_scale_crawler.npz](state_scale_crawler.npz)
 
 ## DDPG (multi-agent env. / every nth step update of k epochs)
