@@ -1,7 +1,7 @@
 # Report
 The report provides a description of the implementation to solve the Unity-ML [crawler project](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Examples.md#crawler) with DeepRL means.<br>
-The Unit-ML Env. (Windows 64bit) can be downloaded [here].(https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Crawler/Crawler_Windows_x86_64.zip)
-<img src="./images/Env.jpg" width="40%"> 
+The Unit-ML Env. (Windows 64bit) can be downloaded [here].(https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Crawler/Crawler_Windows_x86_64.zip)<br>
+<img src="./images/Env_Crawler.JPG" width="60%"> 
 
 ## Preprocessing
 A creature has 4 arms and 4 forearms to control. The observation space consists of 129 variables corresponding to position, rotation, velocity, and angular velocities of each limb plus the acceleration and angular acceleration of the body.
@@ -14,7 +14,6 @@ The matrix (int and float values) is stored in [state_scale_crawler.npz](state_s
 ## DDPG (multi-agent env. / every nth step update of k epochs)
 Training in the multi-agent (12) environment with the DDPG algorithm - updating the network weights at every nth step for k epochs. 
 
-
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
@@ -24,6 +23,10 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |4|25.17|701|batchsize: 512, tau=0.01, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 25, LR_ACTOR 5e-5, LR_CRITIC = 5e-5, L2 weight decay (critic) = 0, NN-A 1024; -C,1024,512,256|
 |5|16.96|277|batchsize: 1024, tau=0.01, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 25, LR_ACTOR 5e-5, LR_CRITIC = 5e-5, L2 weight decay (critic) = 0, NN-A 1024,512,256; -C,1024,512,256|
 
+
+The training is very difficult, and the crawler's performance (measured in average reward over 100 episodes) fluctuates. The crawler tends to learn non optimal startegies (like jumping towards the target, without the being able to land).
+
+<img src="./images/Screen_Crawler_Jump2.JPG" width="60%"> 
 
 
 ## Learning Algorithm - DDPG 
