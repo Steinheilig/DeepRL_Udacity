@@ -4,10 +4,13 @@
 [Udacity DeepRL Git](https://github.com/udacity/deep-reinforcement-learning)
 
 ## First Assignment: Value-Based Methods
-This [directory](./value_based/) contains material and my assignment solutions related to Udacity's value-based Methods course: https://github.com/udacity/Value-based-methods
+This [directory](./value_based/) contains material and my assignment solutions related to Udacity's value-based Methods course: <br> 
+https://github.com/udacity/Value-based-methods
 
 ## Second Assignment: Policy-Based Methods
-This [directory](./policy_based/) contains material and my assignment solutions related to Udacity's 2nd assignment with policy-based methods: https://github.com/udacity/deep-reinforcement-learning/tree/master/p2_continuous-control
+This [directory](./policy_based/) contains material and my assignment solutions related to Udacity's 2nd assignment with policy-based methods:<br>
+https://github.com/udacity/deep-reinforcement-learning/tree/master/p2_continuous-control
 
-## Third Assignment: 
-This [directory](./multi_agent/) contains material and my assignment solutions related to Udacity's 3rd assignment with multi-agent methods: https://github.com/udacity/deep-reinforcement-learning/tree/master/p3_collab-compet
+## Third Assignment: Multi-Agent Methods 
+This [directory](./multi_agent/) contains material and my assignment solutions related to Udacity's 3rd assignment with multi-agent methods:<br>
+https://github.com/udacity/deep-reinforcement-learning/tree/master/p3_collab-compet
