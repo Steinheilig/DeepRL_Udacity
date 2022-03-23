@@ -10,3 +10,4 @@ This [directory](./value_based/) contains material and my assignment solutions r
 This [directory](./policy_based/) contains material and my assignment solutions related to Udacity's 2nd assignment with policy-based methods: https://github.com/udacity/deep-reinforcement-learning/tree/master/p2_continuous-control
 
 ## Third Assignment: 
+This [directory](./multi_agent/) contains material and my assignment solutions related to Udacity's 3rd assignment with multi-agent methods: https://github.com/udacity/deep-reinforcement-learning/tree/master/p3_collab-compet
