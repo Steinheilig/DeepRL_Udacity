@@ -2,7 +2,7 @@
 The report provides a description of the implementation to solve the multi-agent soccer project with DeepRL means.<br> 
 Two strikers (366 continous observations, 6 discret actions) and two goalies(366 continous observations, 4 discret actions) are simulated in an Unity-ML soccer environment.
 
-<img src="./images/Env_Soccer.jpg" width="50%"> 
+<img src="./images/Env_Soccer.JPG" width="50%"> 
 
 ## Preprocessing
 The provided observation space consists of 122 variables for 3 [stacked](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Learning-Environment-Design-Agents.md#stacking) time points to 366 values in total.<br> 
@@ -36,13 +36,12 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |1|-0.43|119|batchsize: 512, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
 |1b|-0.37|1449|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
 |2|-0.72|224|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 25, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (start 1, decay 0.99), L2 weight decay (critic) = 1e-9|
+|3| | |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon 0.2), L2 weight decay (critic) = 1e-9|
 
 
 ## Second Attempt - MADDPG (reduced environment, train only strikers, golies not defending)
-
-After the MADDPG agent with the 24-states environment (individual for each agent) successfully solved the task, I tried to solve the problem faster with a reduced state-space. As stated above, since 3 consecutive time frames (8 states each) are stacked together but velcoity informations are present, it is reasonable to assume that the problem can be solved faster with only a single time frame information allown. Especially the input dimension to the critic network is reduced from 52 (2x24+2x2) to only 20 (2x8+2x2). 
-
-Indeed, the agent learned to play tennis also in this setup but with the hyperparameter an NN setting used the problem was not faster solved than in the full enviornment setup.
+Training in the two-times-two-agent-224-local-observation-states environment with the MADDPG algorithm. 
+Only strikers are trained and the golies perform single action to force them to run away from the goal.
 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
@@ -52,22 +51,6 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |3|0.07|9400| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, NN (actor): 128-32, NN (critic): 128-16 |
 |4|**1.64**|9800| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, NN (actor): 256-128, NN (critic): 256-128 |
 
-<img src="./images/Screen_MADDPG_reduced_run2.JPG" width="80%"> <br>
-The assignment was **solved after 5745 episodes** (2nd run), at which time point on average (over the last 100 episodes of the max reward value of the two agents) a score of 0.5 is achived! Note, that a max possible score of 2.5 is achieved (the highest score possible given the Unity-ML environment version), even though not on average. 
-
-## Third Attempt - DDPG (full environment)
-It is reasonable to assume, that the tennis task can be soved with two independet but skilled tennis player trained to only hit the ball above the net without paying attention to the opponents position or movement. Hence training agentes independently, assuming all the other agent beeing part of and by this dealing with an non-stationary environment, is tested in the following using DDGP.
-
-Training in the two-agent-24-local-observation-states environment with the DDPG algorithm - updating the network weights at every nth step for k epochs. DDPG implementation an hyperparameter are unchanged compared to my [2nd course assignment / 3rd attempt](https://github.com/Steinheilig/DeepRL_Udacity/blob/main/policy_based/Report.md): Neural network architecture (actor (fc1: 256 - ReLU; fc2: 4, tanh); critic (fc1: 256 - ReLU; fc2 (fc1+action): 256 - ReLU; fc3: 128; fc4: 1) and hyperparameter set (batch size == 64, L2 Weight decay == 0; LR critic == 1e-3, all other parameters unchanged to this [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal)).<br>
-
-<img src="./images/Screen_DDPG_run1.JPG" width="80%"> <br>
-
-**Solved the task in 2384 episodes!**<br>
-However, the performance is not necessarily stable if the training is continuout<br>
-
-<img src="./images/Screen_DDPG_run3.JPG" width="80%"> <br>
-
-Here, the task was **solved in 3800 episodes** (same setup, different seed of the UnityML env.), but the performance decreases afterwards.
 
 
 ## Learning Algorithm - DDPG 
