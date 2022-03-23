@@ -1,6 +1,6 @@
 # Report
 The report provides a description of the implementation to solve the multi-agent soccer project with DeepRL means.<br> 
-Two strikers (366 continous observations, 6 discret actions) and two goalies(366 continous observations, 4 discret actions) are simulated in an Unity-ML soccer environment.
+Two strikers (366 continous observations, 6 discret actions) and two goalies(366 continous observations, 4 discret actions) are simulated in an Unity-ML soccer environment [Win64](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Soccer/Soccer_Windows_x86_64.zip)/[Linux](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Soccer/Soccer_Linux.zip).
 
 <img src="./images/Env_Soccer.JPG" width="50%"> 
 
