@@ -15,7 +15,7 @@ The continous values of the state space are in the range [-30,30] and are normal
 The matrix (int and float values) is stored in [state_scale.npz](state_scale.npz)
 
 ## First Attempt - MADDPG (full environment)
-Training in the two-agent-24-local-observation-states environment with the MADDPG algorithm. The network weights are updated *UPDATE_EVERY_NTH_STEP* time step, *UPDATE_MANY_EPOCHS* times for each agent (and *batchsize* many samples from the replay buffer). My Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given below.  
+Training in the two-agent-24-local-observation-states environment with the MADDPG algorithm. The network weights are updated *UPDATE_EVERY_NTH_STEP* time step, *UPDATE_MANY_EPOCHS* times for each agent (and *batchsize* many samples from the replay buffer). My Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2: 256 - ReLU, fc3: 2)). More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given below.  
 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
@@ -101,7 +101,7 @@ Multi-Agent Deep Deterministic Policy Gradient (MADDPG) is an extension of the a
 The basic idea is that while the actor only uses information available to the agent locally, the critic can use globally available information ("god-mode"), like all agents' observations, all agents' actions and potentially information hidden from the agents. The picture below shows the implementation for the two tennis playing agents. Each agent hast 24 locally available observation values and the actor learns the agent's best action given the local observation. To train the actor, a critic is trained with addtional global information; Here, the observation and action of the second agent. Hence, the input to the critic is 2x(24 + 2) = 52 dimensional (two times observations and two times actions, one of which is given by the actor). 
 <img src="./images/MADDPG_struc.JPG" width="60%"><br>
 
- The Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). 
+ The Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2: 256 - ReLU, fc3: 2)). 
  
  The following adjustments are made:<br>
 - interaction with Unity-ML environment
