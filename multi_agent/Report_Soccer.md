@@ -28,7 +28,7 @@ The neural networks are adjusted to the different state and action spaces and th
 
 More details on the neural network architecture, hyperparameters and the MADDPG algorithm are given in the table below and in the other [report](Report.md).
 
-Random exploration is introduced by selecting an action +/-1 of the actor's selected action with probability 2/3 (which in fact is probably a bad design choice) or an epsilon-greedy action selection with epsilon either decaying over the time course of an episode or kept constant. 
+Random exploration is introduced by selecting an action +/-1 of the actor's selected action with probability 2/3 (which in fact is probably a bad design choice) or an epsilon-greedy action selection with epsilon either decaying over time (over course of an episode or across episodes) or kept constant. 
 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
@@ -36,20 +36,18 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |1|-0.43|119|batchsize: 512, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
 |1b|-0.37|1449|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
 |2|-0.72|224|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 25, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (start 1, decay 0.99), L2 weight decay (critic) = 1e-9|
-|3| | |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon 0.2), L2 weight decay (critic) = 1e-9|
-
+|3|-0.93|720|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon 0.2), L2 weight decay (critic) = 1e-9|
+|4| | |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
 
 ## Second Attempt - MADDPG (reduced environment, train only strikers, golies not defending)
 Training in the two-times-two-agent-224-local-observation-states environment with the MADDPG algorithm. 
-Only strikers are trained and the golies perform single action to force them to run away from the goal.
+Only strikers are trained and the golies perform single action to force them to step away from the goal.
 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
-|1|0.15|8000| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, code bug (used t-3 env obs. :o for training) |
-|2|**0.84**|6000| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9|
-|3|0.07|9400| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, NN (actor): 128-32, NN (critic): 128-16 |
-|4|**1.64**|9800| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, NN (actor): 256-128, NN (critic): 256-128 |
+|1| | |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
+
 
 
 
