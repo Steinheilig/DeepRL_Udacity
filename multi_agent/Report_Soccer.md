@@ -33,11 +33,13 @@ Random exploration is introduced by selecting an action +/-1 of the actor's sele
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
-|1|-0.43|119|batchsize: 512, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
-|1b|-0.37|1449|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
-|2|-0.72|224|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 25, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (start 1, decay 0.99), L2 weight decay (critic) = 1e-9|
-|3|-0.93|720|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon 0.2), L2 weight decay (critic) = 1e-9|
-|4| | |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
+|1|-0.43*|119|batchsize: 512, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
+|1b|-0.37*|1449|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
+|2|-0.72*|224|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 25, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (start 1, decay 0.99), L2 weight decay (critic) = 1e-9|
+|3|-0.93*|720|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon 0.2), L2 weight decay (critic) = 1e-9|
+|4| tba | tba |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
+
+<br> (*) bug in training code, local agents action where selected on target network weights :( 
 
 ## Second Attempt - MADDPG (reduced environment, train only strikers, golies not defending)
 Training in the two-times-two-agent-224-local-observation-states environment with the MADDPG algorithm. 
@@ -46,10 +48,10 @@ Only strikers are trained and the golies perform single action to force them to 
 Different hyperparameter settings are tested (Max. Score = max of averaged_100 max scores):
 | Run | Max. Score | Max. Episodes| Params|
 --- | --- | ---| ---|
-|1| | |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
+|1|0.06*|509|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
+|2| | |batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
 
-
-
+<br> (*) bug in training code, local agents action where selected on target network weights :( 
 
 ## Learning Algorithm - DDPG 
 I use the Deep Deterministic Policy Gradient (DDPG) in continous action space with fixed targets (soft update startegie), experience replay buffer and muti-agent environment to solve the assignment. <br>
