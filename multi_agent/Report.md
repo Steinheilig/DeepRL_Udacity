@@ -170,7 +170,7 @@ In the following, the max. reward (black line) for each episode is shown for the
 <img src="./images/Score_DDPG_run3.JPG" width="50%"> 
 
 Here an overview over the rewards as a function of epochs during training for the fastest training runs for each of the three approches. 
-<img src="./images/Score.JPG" width="50%"> 
+<img src="./images/Score_rev.JPG" width="50%"> 
 
 The agent can be tested using [./DDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb).
 
