@@ -56,9 +56,10 @@ Training in the two-agent-24-local-observation-states environment with the DDPG 
 **Solved the task in 2384 episodes!**<br>
 However, the performance is not necessarily stable if the training is continuout<br>
 
-<img src="./images/Screen_DDPG_run3.JPG" width="80%"> <br>
+2nd run is not shown (probably the target was not reached and different seed or hyperparameter were tested) <br>
 
-Here, the task was **solved in 3800 episodes** (same setup, different seed of the UnityML env.), but the performance decreases afterwards.
+Here, in the 3rd run the task was **solved in 3800 episodes** (same setup as 2st run, different seed (42) of the UnityML env.), but the performance decreases afterwards.
+<img src="./images/Screen_DDPG_run3.JPG" width="80%"> <br>
 
 
 ## Learning Algorithm - DDPG 
@@ -146,10 +147,10 @@ The submission includes the saved model weights of the successful agents:
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run1.pth)
 4. DDPG / Run 3:<br>
-   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run3.pth)
-   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run3.pth)
-   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run3.pth)
-   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_4000_run3.pth](Multi_checkpoint_actor_30_20_local_4000_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_actor_30_20_local_4000_run3.pth](Multi_checkpoint_actor_30_20_target_4000_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_4000_run3.pth](Multi_checkpoint_critic_30_20_local_4000_run3.pth)
+   -  [./checkpoints/Multi_checkpoint_critic_30_20_local_4000_run3.pth](Multi_checkpoint_critic_30_20_target_4000_run3.pth)
 
 ### Show Agents Performance Code 
 1. MADDPG  <br> [./MADDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
@@ -157,8 +158,9 @@ The submission includes the saved model weights of the successful agents:
 3. DDPG <br> [./DDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
 
 ## Plot of Rewards
-3rd attempt (individual DDPG agents) was the fasted and needed 2384 episodes to reach the target performance <br> 
-<img src="./images/Screen_DDPG_run1.JPG" width="80%"> <br>
+The 3rd attempt (individual DDPG agents, 1st run) was the fasted and needed 2384 episodes to reach the target performance <br> 
+In the following the max. reward for each episode is shown for the 3rd run (individual DDPG agents) <br>
+<img src="./images/Score_DDPG_run3.JPG" width="50%"> 
 
 Here an overview over the rewards as a function of epochs during training for the fastest training runs for each of the three approches. 
 <img src="./images/Score.JPG" width="50%"> 
