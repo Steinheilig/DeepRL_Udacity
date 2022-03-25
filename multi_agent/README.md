@@ -48,7 +48,7 @@ Functional, well-documented, and organized code for training the agent is provid
 ## Saved Model Weights
 The submission includes the saved model weights of the successful agents:
 1. MADDPG  <br> [./checkpoints/Run5_reduced_episode-6240.pt](Run5_reduced_episode-6240.pt)
-2. MADDPG (reduced state space: Only single time frame) <br> None
+2. MADDPG (reduced state space: Only single time frame) <br> [./checkpoints/Run4_reduced_episode-9900.pt](Run4_reduced_episode-9900.pt)
 3. DDPG / Run 1:<br>
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run1.pth)
