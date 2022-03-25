@@ -36,11 +36,13 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |1b|-0.37*|1449|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 50, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise +/-1 p=2/3, L2 weight decay (critic) = 1e-9|
 |2|-0.72*|224|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 25, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (start 1, decay 0.99), L2 weight decay (critic) = 1e-9|
 |3|-0.93*|720|batchsize: 128, tau=0.1, discount_factor=0.999, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-3, LR_CRITIC = 1e-3, noise epsilon-greedy (epsilon 0.2), L2 weight decay (critic) = 1e-9|
-|4| tba+ | tba |batchsize: 128, tau=0.1, discount_factor=0.995, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
+|4| tba++ | tba |batchsize: 128, tau=0.1, discount_factor=0.995, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 20, LR_ACTOR 1e-4, LR_CRITIC = 1e-4, noise epsilon-greedy (epsilon decay across episodes, start=1; decay=0.999), L2 weight decay (critic) = 1e-9|
 
 <br> (*) bug in training code, local agent's action selected based on target network weights :( <br>
-<br> (+) revision of critic input: one-hot coding <br>
+<br> (++) revision of critic input: softmax action probabilites <br>
 
+Until now I was not able to train the agents, probably due to some error in my MADDPG adaptation.
+<img src="./images/Soccer_Failed.jpg" width="50%"> 
 
 ## Second Attempt - MADDPG (reduced environment, train only strikers, golies not defending)
 Training in the two-times-two-agent-224-local-observation-states environment with the MADDPG algorithm. 
@@ -55,6 +57,9 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 
 <br> (*) bug in training code, local agent's action selected based on target network weights :( 
 <br> (+) revision of critic input: one-hot coding <br>
+
+Until now I was not able to train the agents, probably due to some error in my MADDPG adaptation.
+<img src="./images/Soccer_Failed.jpg" width="50%"> 
 
 ## Learning Algorithm - MADDPG
 Multi-Agent Deep Deterministic Policy Gradient (MADDPG) is an extension of the above [described](Report.md) DDPG algorithm for collaborative and/or competitive multi-agent environments introduced by [Lowe et al. (2017)](https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf). 
