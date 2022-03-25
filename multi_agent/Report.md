@@ -141,23 +141,28 @@ Three different approaches are tested and compared:
 
 ### Saved Model Weights
 The submission includes the saved model weights of the successful agents:
-1. MADDPG  <br> [./checkpoints/Run5_reduced_episode-6240.pt](Run5_reduced_episode-6240.pt)
-2. MADDPG (reduced state space: Only single time frame) <br> [./checkpoints/Run4_reduced_episode-9900.pt](Run4_reduced_episode-9900.pt)
-4. DDPG / Run 1:<br>
+1. MADDPG  <br> 
+   - [./checkpoints/Run5_reduced_episode-6240.pt](Run5_reduced_episode-6240.pt)  
+2. MADDPG (reduced state space: Only single time frame) <br> 
+   - [./checkpoints/Run4_reduced_episode-9900.pt](Run4_reduced_episode-9900.pt)
+3. DDPG / Run 1:<br>
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run1.pth)
-5. DDPG / Run 3:<br>
+4. DDPG / Run 3:<br>
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_4000_run3.pth](Multi_checkpoint_actor_30_20_local_4000_run3.pth)
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_4000_run3.pth](Multi_checkpoint_actor_30_20_target_4000_run3.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_4000_run3.pth](Multi_checkpoint_critic_30_20_local_4000_run3.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_4000_run3.pth](Multi_checkpoint_critic_30_20_target_4000_run3.pth)
 
 ### Show Agents Performance Code 
-1. MADDPG  <br> [./MADDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
-2. MADDPG (reduced state space: Only single time frame) <br> None
-3. DDPG <br> [./DDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
+1. MADDPG  <br>
+   - [./MADDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
+2. MADDPG (reduced state space: Only single time frame) <br> 
+   - None
+3. DDPG <br> 
+   - [./DDPG/ShowAgentPerformance.ipynb](ShowAgentPerformance.ipynb)
 
 ## Plot of Rewards
 The 3rd attempt (individual DDPG agents, 1st run) was the fasted and needed 2384 episodes to reach the target performance <br> 
