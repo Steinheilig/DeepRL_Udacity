@@ -44,6 +44,7 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 |4|**1.64**|9800| batchsize: 4*128, tau=0.1, discount_factor=0.99, clipping=1, UPDATE_EVERY_NTH_STEP= 30, UPDATE_MANY_EPOCHS = 10, LR_ACTOR 5e-4, LR_CRITIC = 5e-4, noise_reduction = 0.9, L2 weight decay (critic) = 1e-9, NN (actor): 256-128, NN (critic): 256-128 |
 
 <img src="./images/Screen_MADDPG_reduced_run2.JPG" width="80%"> <br>
+
 The assignment was **solved after 5745 episodes** (2nd run), at which time point on average (over the last 100 episodes of the max reward value of the two agents) a score of 0.5 is achived! Note, that a max possible score of 2.5 is achieved (the highest score possible given the Unity-ML environment version), even though not on average. 
 
 ## Third Attempt - DDPG (full environment)
@@ -59,6 +60,7 @@ However, the performance is not necessarily stable if the training is continuout
 2nd run is not shown (probably the target was not reached and different seed or hyperparameter were tested) <br>
 
 Here, in the 3rd run the task was **solved in 3800 episodes** (same setup as 2st run, different seed (42) of the UnityML env.), but the performance decreases afterwards.
+
 <img src="./images/Screen_DDPG_run3.JPG" width="80%"> <br>
 
 
@@ -140,13 +142,13 @@ Three different approaches are tested and compared:
 ### Saved Model Weights
 The submission includes the saved model weights of the successful agents:
 1. MADDPG  <br> [./checkpoints/Run5_reduced_episode-6240.pt](Run5_reduced_episode-6240.pt)
-2. MADDPG (reduced state space: Only single time frame) <br> None
-3. DDPG / Run 1:<br>
+2. MADDPG (reduced state space: Only single time frame) <br> [./checkpoints/Run4_reduced_episode-9900.pt](Run4_reduced_episode-9900.pt)
+4. DDPG / Run 1:<br>
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_local_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_2500_run1.pth](Multi_checkpoint_actor_30_20_target_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_local_2500_run1.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_2500_run1.pth](Multi_checkpoint_critic_30_20_target_2500_run1.pth)
-4. DDPG / Run 3:<br>
+5. DDPG / Run 3:<br>
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_4000_run3.pth](Multi_checkpoint_actor_30_20_local_4000_run3.pth)
    -  [./checkpoints/Multi_checkpoint_actor_30_20_local_4000_run3.pth](Multi_checkpoint_actor_30_20_target_4000_run3.pth)
    -  [./checkpoints/Multi_checkpoint_critic_30_20_local_4000_run3.pth](Multi_checkpoint_critic_30_20_local_4000_run3.pth)
