@@ -60,9 +60,9 @@ Different hyperparameter settings are tested (Max. Score = max of averaged_100 m
 Multi-Agent Deep Deterministic Policy Gradient (MADDPG) is an extension of the above [described](Report.md) DDPG algorithm for collaborative and/or competitive multi-agent environments introduced by [Lowe et al. (2017)](https://proceedings.neurips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf). 
 
 The basic idea is that while the actor only uses information available to the agent locally, the critic can use globally available information ("god-mode"), like all agents' observations, all agents' actions and potentially information hidden from the agents. The picture below shows the implementation for the four soccer playing agents. Each agent hast 366 locally available observation values and the actor learns the agent's best action given the local observation. To train the actor, a critic is trained with addtional global information; Here, the observation and action of the second agent. Hence, the input to the critic is 2x(366-122 + 6) = 450 dimensional (two times observations and two times actions, one of which is given by the actor). One stacked time fame is removed from the observations, just keeping the most recent two. The selected actions, which are discrete in this environment, are one-hot encoded. 
-<img src="./images/MADDPG_struc.JPG" width="60%"><br>
+<img src="./images/MADDPG_struc_soccer.JPG" width="60%"><br>
 
- The Python implementation is based on the MADDPG example code provided in the Udacity course. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased  (actor (fc1: 512 - ReLU; fc2: 256, tanh); critic (fc1: 512 - ReLU; fc2 (fc1+action): 256 - ReLU, fc3: 2)). 
+ The Python implementation is based on the MADDPG example code provided in the Udacity course but adapted for discrete actions, i.e. argmax action selection and one-hot encoding of selected action as input to critic. The neural networks are adjusted to the different state and action spaces and the size of the hidden layers is significantly increased (actor (fc1: 1024 - ReLU; fc2: 512, fc3: 6 -> argmax); critic (fc1: 1024 - ReLU; fc2: 512 - ReLU, fc3: 1)). 
  
  The following adjustments are made:<br>
 - interaction with Unity-ML environment
@@ -89,14 +89,18 @@ All learning hyperparameters values listed in the tables are comparable or only 
 
 ## Different Implementations
 Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
+<br>tba
 
 ### Saved Model Weights
 The submission includes the saved model weights of the successful agents:
+<br>tba
 
 ### Show Agents Performance Code 
+<br>tba
 
 ## Plot of Rewards
- 
+<br>tba
+
 ## Ideas for Future Work
 To further improving the agent's performance: 
 - tune hyperparameters
