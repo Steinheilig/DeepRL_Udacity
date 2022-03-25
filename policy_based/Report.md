@@ -101,8 +101,11 @@ Here, \Theta are the weights of a deep neural network and U(\Theta)=\sum_\tauP(\
 I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU activation functions with 256-128-32 hidden units. The final output is passed through a tanh function to ensure action values in [-1,1]. The actions (four numbers /float values) correspond to torques applicable to the two joints of the robot.<br>
 <img src="./images/PPO_struc.JPG" width="35%"><br>
  
-The Code is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
- 
+The sode is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
+
+The code is adaped to allow continous action. Therefor, for each continuous action the model learns an approximation of the mean and std of a normal distribution.
+(i.e. mean and std are state dependent and parameterized by some \Theta (like NN weights inthis case)). The policy can be defined as the normal probability density (compare e.g. formula 13.19 in Sutton & Barto 2nd edition). For a sound implementation see this [video](https://www.youtube.com/watch?v=BvZvx7ENZBw&ab_channel=Weights%26Biases) (note that there and in this implementation the std is defined to be state independent but instead some learned parameter > 0 for each action (~3:30)). 
+  
 The following adjustments are made:<br>
 - adapt the code to continous actions 
 - interface and adapt to the new environment (state_dim = 33, action_dim = 4, etc..)
@@ -147,4 +150,4 @@ To further improving the agent's performance:
 - DDPG: add prioritized replay buffer 
 - DDPG: add noise to the states after drawing samples from of the replay buffer (instead or additional to the noise added to the estimated best action). This might stabalize the NN function approximation (by learning that similar initial states - actions result in similar rewards - next states)
 - DDPG: Ornsetein-Uhlenbeck noise was added to the action space. It has been [shown](https://openai.com/blog/better-exploration-with-parameter-noise/) that adding noise to the parameters of the neural network policy can improve performance. 
-- try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC PPO was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
+- try other policy gradient method like an actor-critic (AC) method, or soft actor-critic (SAC) algorithm. Where QR-SAC was [recently used](https://www.nature.com/articles/s41586-021-04357-7) to train a reinforcment agent to outracing champion Gran Turismo drivers in Sony's PlayStation game Gran Turismo.<br>
