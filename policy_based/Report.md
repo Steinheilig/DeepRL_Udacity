@@ -102,7 +102,9 @@ I used a multi-layer perceptron (MLP), i.e. a fully connect network with ReLU ac
 <img src="./images/PPO_struc.JPG" width="35%"><br>
  
 The Code is based on the the Udacity exercise code to solve the Atari-pong game using the pixels of two succeeding frames as an input with PPO.<br>
+ 
 The following adjustments are made:<br>
+- adapt the code to continous actions 
 - interface and adapt to the new environment (state_dim = 33, action_dim = 4, etc..)
 - preprosessing of state values (scaling)
 - changed network design (see above)
