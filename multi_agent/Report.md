@@ -166,7 +166,7 @@ The submission includes the saved model weights of the successful agents:
 
 ## Plot of Rewards
 The 3rd attempt (individual DDPG agents, 1st run) was the fasted and needed 2384 episodes to reach the target performance <br> 
-In the following the max. reward for each episode is shown for the 3rd run (individual DDPG agents) <br>
+In the following, the max. reward (black line) for each episode is shown for the 3rd run (individual DDPG agents). Magenta line shows the <max reward> for the last 100 episodes (in a 500 episode interval)<br>
 <img src="./images/Score_DDPG_run3.JPG" width="50%"> 
 
 Here an overview over the rewards as a function of epochs during training for the fastest training runs for each of the three approches. 
