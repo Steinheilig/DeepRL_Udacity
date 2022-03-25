@@ -93,8 +93,8 @@ All learning hyperparameters values listed in the tables are comparable or only 
 - Noise: **epsilon-greedy**
 
 ## Different Implementations
-Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks.
-<br>tba
+Functional, well-documented, and organized code for training the agent is provided for the different implementations via Jupyter notebooks is provided in this [directory](./Soccer/).
+
 
 ### Saved Model Weights
 The submission includes the saved model weights of the successful agents:
